@@ -1,0 +1,36 @@
+---
+// src/layouts/BaseLayout.astro
+// This is the main layout component for your Astro pages.
+// It defines the basic HTML structure, meta tags, and global styles.
+
+// --- IMPORTANT CHANGE HERE ---
+// Directly import the global Tailwind CSS file in the frontmatter
+import '../styles/tailwind.css';
+
+// Props can be passed to the layout from individual pages.
+interface Props {
+  title?: string; // Optional page title
+  description?: string; // Optional page description for SEO
+}
+
+const { title = 'My Awesome Template', description = 'A versatile Astro template for modern web projects.' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Optional: Link to Inter font from Google Fonts for easy setup -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Slot for injecting content from pages -->
+    <slot />
+  </body>
+</html>

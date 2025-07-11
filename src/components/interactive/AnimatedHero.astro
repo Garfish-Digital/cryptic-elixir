@@ -1,0 +1,44 @@
+---
+// src/components/interactive/AnimatedHero.astro
+// This component will contain a complex animation.
+// It uses a client:load directive to ensure its JavaScript runs on the client.
+---
+<div class="relative w-full h-96 bg-gradient-to-br from-purple-600 to-indigo-800 flex items-center justify-center rounded-lg overflow-hidden shadow-xl">
+  <h2 class="text-white text-4xl md:text-6xl font-extrabold z-10 animate-fade-in">
+    Dynamic Visuals Await
+  </h2>
+  <!-- Placeholder for a canvas or SVG animation -->
+  <div id="animation-container" class="absolute inset-0 z-0 opacity-20">
+    <!-- This is where your Three.js/WebGL canvas or complex SVG animation will go -->
+    <!-- For now, it's just a visual placeholder -->
+    <div class="w-full h-full flex items-center justify-center text-white text-opacity-50 text-xl">
+      (Complex Animation/WebGL Scene Here)
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Basic keyframe for a simple fade-in effect */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+</style>
+
+<script>
+  // src/components/interactive/AnimatedHero.astro (script section)
+  // This script will run on the client side because of client:load.
+  // You'll integrate your Three.js/WebGL setup here.
+  import { initWebGLScene } from '../../scripts/webgl-scene.js'; // Import your WebGL logic
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('animation-container');
+    if (container) {
+      console.log('AnimatedHero: Initializing WebGL scene...');
+      initWebGLScene(container); // Call your WebGL initialization function
+    }
+  });
+</script>
