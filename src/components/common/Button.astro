@@ -5,16 +5,17 @@ interface Props {
   text: string;
   href?: string;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'skeletal'; // Define button variants
 }
 
 const { text, href, onClick, variant = 'primary' } = Astro.props;
 
-const baseClasses = 'inline-block px-8 py-3 rounded-full font-semibold transition-all duration-300 ease-in-out transform hover:scale-105';
-const primaryClasses = 'bg-blue-500 text-white shadow-lg hover:bg-blue-600';
-const secondaryClasses = 'bg-gray-200 text-gray-800 hover:bg-gray-300';
+const baseClasses = 'inline-block px-8 py-3 rounded-full font-body font-semibold transition-all duration-300 ease-in-out transform  mystical-border';
+const primaryClasses = 'bg-gold text-leather shadow-2xl hover:bg-silver hover:text-charcoal text-glow';
+const secondaryClasses = 'parchment-texture text-charcoal hover:leather-texture hover:text-parchment';
+const skeletalClasses = 'skeleton-button';
 
-const classes = `${baseClasses} ${variant === 'primary' ? primaryClasses : secondaryClasses}`;
+const classes = `${baseClasses} ${variant === 'primary' ? primaryClasses : variant === 'skeletal' ? skeletalClasses : secondaryClasses}`;
 ---
 
 {href ? (
@@ -22,7 +23,7 @@ const classes = `${baseClasses} ${variant === 'primary' ? primaryClasses : secon
     {text}
   </a>
 ) : (
-  <button onclick={onClick} class={classes}>
+  <button class={classes}>
     {text}
   </button>
 )}

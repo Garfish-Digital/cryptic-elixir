@@ -1,0 +1,58 @@
+---
+// src/components/Skeleton.astro
+// Skeleton screen that duplicates exact main content structure from index.astro
+// This will be positioned as a separate layer for loading state
+import Button from './common/Button.astro';
+import '../styles/skeleton.css';
+---
+
+<div class="skeleton-layer">
+  <!-- Main content skeleton - exact duplicate of index.astro main content -->
+  <main class="container mx-auto p-4 py-12">
+    <!-- Hero section skeleton -->
+    <section class="text-center mb-16">
+      <h1 class="skeleton-text-hero text-5xl md:text-6xl font-serif font-bold mb-6">
+        Cryptic Elixir
+      </h1>
+      <p class="skeleton-text text-xl md:text-2xl mb-4 font-body">
+        Ancient Wisdom • Occult Literature • Rare Manuscripts
+      </p>
+      <p class="skeleton-text text-lg mb-8 font-body max-w-2xl mx-auto">
+        Journey into the depths of esoteric knowledge with our curated collection of mystical texts, forbidden grimoires, and alchemical treatises.
+      </p>
+        <Button text="Explore the Collection" href="" variant="skeletal" />
+      <!-- <div class="skeleton-button">Explore the Collection</div> -->
+    </section>
+
+    <!-- Collection grid skeleton -->
+    <section id="collection" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      <div class="skeleton-card p-6 rounded-lg">
+        <h2 class="skeleton-text-bright text-2xl font-serif font-semibold mb-3">Ancient Grimoires</h2>
+        <p class="skeleton-text font-body">Discover authentic medieval spell books, ritual guides, and ceremonial magic texts from forgotten libraries.</p>
+      </div>
+      <div class="skeleton-card p-6 rounded-lg">
+        <h2 class="skeleton-text-bright text-2xl font-serif font-semibold mb-3">Alchemical Manuscripts</h2>
+        <p class="skeleton-text font-body">Rare treatises on the Great Work, transmutation secrets, and the philosopher's stone from master alchemists.</p>
+      </div>
+      <div class="skeleton-card p-6 rounded-lg">
+        <h2 class="skeleton-text-bright text-2xl font-serif font-semibold mb-3">Tarot & Divination</h2>
+        <p class="skeleton-text font-body">Comprehensive guides to the mystic arts of fortune telling, scrying, and prophetic interpretation.</p>
+      </div>
+    </section>
+
+    <!-- Interactive component skeleton -->
+    <section class="mb-16">
+      <h2 class="skeleton-text text-3xl font-serif font-bold text-center mb-8">The Arcanum Awaits</h2>
+      <!-- AnimatedHero will be omitted as per requirements -->
+    </section>
+
+    <!-- Call to action skeleton -->
+    <section class="text-center p-8 rounded-lg">
+      <h2 class="skeleton-text text-3xl font-serif font-bold mb-4">Seek the Hidden Knowledge?</h2>
+      <p class="skeleton-text text-lg mb-6 font-body max-w-2xl mx-6">
+        Step through the veil between worlds and discover the mysteries that have been whispered in shadows for centuries.
+      </p>
+      <div class="skeleton-button">Enter the Sanctum</div>
+    </section>
+  </main>
+</div>

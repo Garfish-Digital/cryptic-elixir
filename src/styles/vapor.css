@@ -1,0 +1,75 @@
+/* Vapor Effect Styles */
+
+.vapor-layer-above {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1002;
+  pointer-events: none;
+  opacity: 0;
+  animation: 
+    vapor-fade-in 2000ms ease-in 2000ms forwards,
+    vapor-cross-fade-out 4000ms ease-out 4000ms forwards;
+}
+
+.vapor-layer-below {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  animation: 
+    vapor-cross-fade-in 3000ms ease-in 3000ms forwards,
+    vapor-fade-out 4000ms ease-out 7000ms forwards;
+  /* animation: 
+    vapor-cross-fade-in 3000ms ease-in 4000ms forwards,
+    vapor-fade-out 4000ms ease-out 7000ms forwards; */
+}
+
+.vapor-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Vapor animations */
+@keyframes vapor-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes vapor-cross-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes vapor-cross-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes vapor-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

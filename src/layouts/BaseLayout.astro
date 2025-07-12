@@ -3,6 +3,10 @@
 // This is the main layout component for your Astro pages.
 // It defines the basic HTML structure, meta tags, and global styles.
 
+import Skeleton from '../components/Skeleton.astro';
+import VaporEffect from '../components/VaporEffect.astro';
+
+
 // --- IMPORTANT CHANGE HERE ---
 // Directly import the global Tailwind CSS file in the frontmatter
 import '../styles/tailwind.css';
@@ -13,11 +17,11 @@ interface Props {
   description?: string; // Optional page description for SEO
 }
 
-const { title = 'My Awesome Template', description = 'A versatile Astro template for modern web projects.' } = Astro.props;
+const { title = 'Cryptic Elixir', description = 'Occult Literature and Rare Books.' } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlRoot">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,11 +30,67 @@ const { title = 'My Awesome Template', description = 'A versatile Astro template
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Optional: Link to Inter font from Google Fonts for easy setup -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Mystical serif fonts for the occult bookshop -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lora:wght@400;500;600&family=Arapey:wght@400;500&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- Slot for injecting content from pages -->
-    <slot />
+    <!-- Skeleton loading screen -->
+    <Skeleton />
+    
+    <!-- Vapor Effect -->
+    <VaporEffect />
+
+    <!-- High-End WebGL Loading Screen
+        <div class="webgl-loading-screen" id="webglLoadingScreen">
+      <div class="webgl-canvas-container" id="webglCanvasContainer"> -->
+        <!-- Three.js canvas will be inserted here -->
+      <!-- </div> -->
+    <!-- </div> -->
+    
+    <!-- Main Content with Fade-in -->
+    <div class="content-layer">
+      <!-- Slot for injecting content from pages -->
+      <slot />
+    </div>
+    
+    <!-- WebGL Loading Script - DISABLED FOR DEVELOPMENT -->
+    <!-- <script>
+      // High-end WebGL loading sequence
+      document.addEventListener('DOMContentLoaded', async function() {
+        const loadingScreen = document.getElementById('webglLoadingScreen');
+        const canvasContainer = document.getElementById('webglCanvasContainer');
+        const mainContent = document.getElementById('mainContent');
+        
+        if (!loadingScreen || !canvasContainer || !mainContent) return;
+        
+        try {
+          // Dynamically import the subtle vapor loader
+          const { initSubtleVaporLoader } = await import('../scripts/subtle-vapor-loader.js');
+          
+          // Initialize the subtle vapor WebGL loader
+          initSubtleVaporLoader(canvasContainer);
+          
+          // Listen for loading completion
+          document.addEventListener('mysticalLoadingComplete', () => {
+            // Show main content with elegant fade-in
+            setTimeout(() => {
+              mainContent.classList.add('loaded');
+            }, 200);
+            
+            // Remove loading screen from DOM after fade completes
+            setTimeout(() => {
+              loadingScreen.remove();
+            }, 700);
+          });
+        } catch (error) {
+          console.error('Failed to load WebGL mystical loader:', error);
+          // Fallback to simple fade-in
+          setTimeout(() => {
+            mainContent.classList.add('loaded');
+            loadingScreen.remove();
+          }, 1000);
+        }
+      });
+    </script> -->
   </body>
 </html>

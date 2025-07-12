@@ -1,0 +1,76 @@
+---
+// src/components/VaporEffect.astro
+// WebGL vapor effect with dual-layer depth swap
+import '../styles/vapor.css';
+---
+
+<!-- Vapor Layer Above (starts visible, fades to below at 4000ms) -->
+<div class="vapor-layer-above">
+  <canvas class="vapor-canvas" id="vaporCanvasAbove"></canvas>
+</div>
+
+<!-- Vapor Layer Below (invisible until cross-fade at 4000ms) -->
+<div class="vapor-layer-below">
+  <canvas class="vapor-canvas" id="vaporCanvasBelow"></canvas>
+</div>
+
+<script>
+  import { VaporWebGL } from '../scripts/vapor-webgl.js';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvasAbove = document.getElementById('vaporCanvasAbove');
+    const canvasBelow = document.getElementById('vaporCanvasBelow');
+    
+    if (!canvasAbove || !canvasBelow) {
+      console.warn('Vapor canvases not found');
+      return;
+    }
+    
+    // Declare vapor instances in proper scope
+    let vaporAbove = null;
+    let vaporBelow = null;
+    
+    // Set canvas size to viewport
+    function resizeCanvases() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      canvasAbove.width = width;
+      canvasAbove.height = height;
+      canvasBelow.width = width;
+      canvasBelow.height = height;
+      
+      if (vaporAbove) vaporAbove.resize(width, height);
+      if (vaporBelow) vaporBelow.resize(width, height);
+    }
+    
+    // Initialize both vapor instances
+    resizeCanvases();
+    
+    vaporAbove = new VaporWebGL(canvasAbove);
+    vaporBelow = new VaporWebGL(canvasBelow);
+    
+    if (vaporAbove && vaporBelow) {
+      // Start both animations (they'll be revealed by CSS animations)
+      vaporAbove.start();
+      vaporBelow.start();
+      
+      // Stop animations after 9000ms (1000ms start + 8000ms duration)
+      setTimeout(() => {
+        vaporAbove.stop();
+        vaporBelow.stop();
+      }, 9000);
+    } else {
+      console.warn('Failed to initialize WebGL vapor effects');
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', resizeCanvases);
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      if (vaporAbove) vaporAbove.stop();
+      if (vaporBelow) vaporBelow.stop();
+    });
+  });
+</script>
