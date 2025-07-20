@@ -11,26 +11,28 @@ const isCollectionsPage = currentPath === "/collections";
 ---
 
 <nav class="bottom-nav">
-  {isCollectionsPage && (
-    <button id="filter-trigger" class="nav-icon-link filter-nav-btn">
+  <!-- {isCollectionsPage && ( -->
+    <button id="filter-trigger" class="nav-icon-link filter-nav-btn" style={`color: ${isCollectionsPage ? 'var(--silver)' : 'var(--leather-light)'};`}>
       <i class="fa fa-flask-round-potion"></i>
     </button>
-  )}
+  <!-- )} -->
   
-  <a href="/" class={`nav-icon-link ${currentPath === "/" ? "active" : ""}`}>
+  <a href="/" class="nav-icon-link" data-nav-path="/">
     <i class="fa-sharp fa-castle"></i>
   </a>
 
   <a
     href="/collections"
-    class={`nav-icon-link ${currentPath === "/collections" ? "active" : ""}`}
+    class="nav-icon-link"
+    data-nav-path="/collections"
   >
     <i class="fa-sharp fa-scroll"></i>
   </a>
 
   <a
     href="/sanctum"
-    class={`nav-icon-link ${currentPath === "/sanctum" ? "active" : ""}`}
+    class="nav-icon-link"
+    data-nav-path="/sanctum"
   >
     <i class="fa-sharp fa-candle-holder"></i>
   </a>
@@ -51,7 +53,26 @@ const isCollectionsPage = currentPath === "/collections";
       <p class="empty-cart">Your satchel awaits ancient wisdom...</p>
     </div>
     <div class="cart-footer">
-      <button id="clear-cart" class="clear-cart-btn">Empty Satchel</button>
+      <button id="clear-cart" class="clear-cart-btn">Remove all</button>
+      <button id="purchase-cart" class="purchase-cart-btn">Purchase</button>
+    </div>
+  </div>
+</div>
+
+<div id="thank-you-modal" class="cart-modal">
+  <div class="cart-modal-content">
+    <div class="cart-header">
+      <h2>Thank you for your purchase!</h2>
+      <button id="close-thank-you" class="close-btn">&times;</button>
+    </div>
+    <div class="cart-items">
+      <div class="thank-you-icon">
+        <i class="fa-sharp fa-sparkles"></i>
+      </div>
+      <p class="empty-cart">Your mystical treasures are on their way...</p>
+    </div>
+    <div class="cart-footer">
+      <button id="continue-btn" class="purchase-cart-btn">Continue</button>
     </div>
   </div>
 </div>
@@ -64,8 +85,12 @@ const isCollectionsPage = currentPath === "/collections";
     const cartModal = document.getElementById("cart-modal");
     const closeCart = document.getElementById("close-cart");
     const clearCart = document.getElementById("clear-cart");
+    const purchaseCart = document.getElementById("purchase-cart");
+    const thankYouModal = document.getElementById("thank-you-modal");
+    const closeThankYou = document.getElementById("close-thank-you");
+    const continueBtn = document.getElementById("continue-btn");
 
-    if (!satchelBtn || !cartModal || !closeCart || !clearCart) return;
+    if (!satchelBtn || !cartModal || !closeCart || !clearCart || !purchaseCart) return;
 
     satchelBtn.addEventListener("click", () => {
       cartModal.classList.add("active");
@@ -80,6 +105,23 @@ const isCollectionsPage = currentPath === "/collections";
       cart = [];
       updateCartCount();
       updateCartDisplay();
+      updateCartButtons();
+    });
+
+    purchaseCart.addEventListener("click", () => {
+      if (cart.length > 0) {
+        // Empty the cart
+        cart = [];
+        updateCartCount();
+        updateCartDisplay();
+        updateCartButtons();
+        
+        // Close cart modal
+        cartModal.classList.remove("active");
+        
+        // Show thank you modal
+        showThankYouModal();
+      }
     });
 
     // Close modal when clicking outside
@@ -88,20 +130,59 @@ const isCollectionsPage = currentPath === "/collections";
         cartModal.classList.remove("active");
       }
     });
+
+    // Thank you modal event listeners
+    if (closeThankYou) {
+      closeThankYou.addEventListener("click", () => {
+        thankYouModal.classList.remove("active");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 300);
+      });
+    }
+
+    if (continueBtn) {
+      continueBtn.addEventListener("click", () => {
+        thankYouModal.classList.remove("active");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 300);
+      });
+    }
+
+    // Close thank you modal when clicking outside
+    if (thankYouModal) {
+      thankYouModal.addEventListener("click", (e) => {
+        if (e.target === thankYouModal) {
+          thankYouModal.classList.remove("active");
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 300);
+        }
+      });
+    }
+
+    // Initialize button states
+    updateCartButtons();
   }
 
   function addToCart(item) {
     const existingItem = cart.find((cartItem) => cartItem.title === item.title);
+    const cartModal = document.getElementById("cart-modal");
+
     if (!existingItem) {
       cart.push({ ...item, id: Date.now() });
       updateCartCount();
+      updateCartButtons();
     }
+    cartModal.classList.remove("active");
   }
 
   function removeFromCart(itemId) {
     cart = cart.filter((item) => item.id !== itemId);
     updateCartCount();
     updateCartDisplay();
+    updateCartButtons();
   }
 
   function updateCartCount() {
@@ -137,9 +218,6 @@ const isCollectionsPage = currentPath === "/collections";
             <button class="remove-item-btn" onclick="removeFromCart(${item.id})">
               <i class="fa-sharp fa-shelves" style="--fa-primary-color: #36454F; --fa-secondary-color: #A9A9A9;"></i>
             </button>
-            <button class="remove-item-btn" onclick="removeFromCart(${item.id})">
-              <i class="fa-sharp fa-coin-blank" style="--fa-primary-color: #4B0082; --fa-secondary-color: #8A2BE2;"></i>
-            </button>
           </div>
         </div>
       `
@@ -147,12 +225,77 @@ const isCollectionsPage = currentPath === "/collections";
       .join("");
   }
 
+  function updateCartButtons() {
+    const clearCart = document.getElementById("clear-cart");
+    const purchaseCart = document.getElementById("purchase-cart");
+    
+    if (clearCart && purchaseCart) {
+      const hasItems = cart.length > 0;
+      
+      // Enable/disable buttons based on cart contents
+      clearCart.disabled = !hasItems;
+      purchaseCart.disabled = !hasItems;
+      
+      // Update visual styling
+      if (hasItems) {
+        clearCart.classList.remove("disabled");
+        purchaseCart.classList.remove("disabled");
+      } else {
+        clearCart.classList.add("disabled");
+        purchaseCart.classList.add("disabled");
+      }
+    }
+  }
+
+  function showThankYouModal() {
+    const thankYouModal = document.getElementById("thank-you-modal");
+    
+    if (thankYouModal) {
+      thankYouModal.classList.add("active");
+      
+      // Auto-redirect after 2500ms
+      setTimeout(() => {
+        thankYouModal.classList.remove("active");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 300); // Wait for fade out animation
+      }, 2500);
+    }
+  }
+
   // Make functions available globally
   window.addToCart = addToCart;
   window.removeFromCart = removeFromCart;
 
+  // Initialize navigation active states
+  function initializeNavigation() {
+    const navLinks = document.querySelectorAll('.nav-icon-link[data-nav-path]');
+    const currentPath = window.location.pathname;
+    
+    // Remove all active classes first
+    navLinks.forEach(link => link.classList.remove('active'));
+    
+    // Add active class to matching link
+    navLinks.forEach(link => {
+      const linkPath = link.getAttribute('data-nav-path');
+      // Handle root path and exact matches
+      if (
+        (linkPath === '/' && (currentPath === '/' || currentPath === '')) ||
+        (linkPath !== '/' && currentPath.startsWith(linkPath))
+      ) {
+        link.classList.add('active');
+      }
+    });
+  }
+
   // Initialize when DOM is ready
-  document.addEventListener("DOMContentLoaded", initializeCart);
+  document.addEventListener("DOMContentLoaded", () => {
+    initializeCart();
+    initializeNavigation();
+  });
+
+  // Re-initialize navigation on page changes (for SPA-like behavior)
+  window.addEventListener("popstate", initializeNavigation);
 </script>
 
 <style>
@@ -349,7 +492,9 @@ const isCollectionsPage = currentPath === "/collections";
     text-align: center;
   }
 
-  .clear-cart-btn {
+  .clear-cart-btn,
+  .purchase-cart-btn {
+    width: 40%;
     background: var(--leather);
     color: var(--parchment);
     border: none;
@@ -360,8 +505,23 @@ const isCollectionsPage = currentPath === "/collections";
     font-weight: 500;
   }
 
-  .clear-cart-btn:hover {
+  .clear-cart-btn:hover:not(.disabled) {
     background: #dc2626;
+  }
+  .purchase-cart-btn:hover:not(.disabled) {
+    background: #32cd32;
+  }
+
+  .clear-cart-btn.disabled,
+  .purchase-cart-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--charcoal-light) !important;
+  }
+
+  .clear-cart-btn.disabled:hover,
+  .purchase-cart-btn.disabled:hover {
+    background: var(--charcoal-light) !important;
   }
 
   /* Mobile Optimization */
@@ -381,6 +541,29 @@ const isCollectionsPage = currentPath === "/collections";
     .cart-modal-content {
       width: 95%;
       margin: 1rem;
+    }
+  }
+
+  /* Thank You Modal Icon Styling */
+  .thank-you-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .thank-you-icon i {
+    color: var(--gold);
+    font-size: 3rem;
+    animation: sparkle 2s ease-in-out infinite;
+  }
+
+  @keyframes sparkle {
+    0%, 100% { 
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    50% { 
+      transform: scale(1.1) rotate(180deg);
+      opacity: 0.8;
     }
   }
 </style>

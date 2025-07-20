@@ -16,99 +16,47 @@
   .animated-hero {
     position: relative;
     width: 100%;
-    height: 70vh;
-    min-height: 500px;
+    aspect-ratio: 2 / 1; /* 2:1 ratio window */
+    max-width: 1200px; /* Reasonable max width */
+    margin: 0 auto; /* Center the component */
     overflow: hidden;
     /* border-radius: 12px; */
-    /* box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4); */
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
   }
 
   .hero-image {
-    height: 100%;
-    width: auto;
-    object-fit: cover;
-    object-position: bottom left;
+    /* 
+    Position image to fill window width completely
+    Bottom edge of image aligns with bottom edge of window
+    Top portion gets cropped by window overflow:hidden
+    */
     position: absolute;
     bottom: 0;
     left: 0;
+    width: 100%; /* Fill the entire window width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    object-position: bottom; /* Align bottom edge, crop from top */
     
-    /* Ken Burns animation - back and forth pan */
-    animation: kenBurnsPan 120s linear infinite alternate;
+    /* Ken Burns animation - subtle movement within our cropped area */
+    /* animation: kenBurnsCrop 120s linear infinite alternate; */
   }
 
-  @keyframes kenBurnsPan {
+  @keyframes kenBurnsCrop {
     0% {
-      transform: translateX(0%);
+      transform: scale(1) translateX(0px);
+    }
+    50% {
+      transform: scale(1.05) translateX(-100px);
     }
     100% {
-      transform: translateX(calc(100vw - 100%));
+      transform: scale(1.02) translateX(-50px);
     }
   }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .animated-hero {
-      height: 50vh;
-      min-height: 400px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .animated-hero {
-      height: 40vh;
-      min-height: 300px;
-    }
-  }
-
-  /* Accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    .hero-image {
-      animation: none;
-      transform: scale(1.1);
-    }
-  }
 </style>
 
 
 <script>
 
-        // import * as animejsModule from 'animejs';
-    // const anime = animejsModule.default || animejsModule;
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const kenBurnsImage = document.getElementById('hero-image');
-
-//     // Define the Ken Burns animation
-//     anime({
-//         targets: kenBurnsImage,
-//         // 1. Pan Effect (Translation)
-//         // We are moving the image from -10%/-10% to +10%/+10% 
-//         // to create a slow diagonal movement.
-//         translateX: [
-//             { value: '-10%', easing: 'linear' }, 
-//             { value: '10%', easing: 'linear' }
-//         ],
-//         translateY: [
-//             { value: '-10%', easing: 'linear' }, 
-//             { value: '10%', easing: 'linear' }
-//         ],
-        
-//         // 2. Zoom Effect (Scale)
-//         // We'll zoom from a scale of 1.2x to 1.1x (or vice versa, adjust as needed)
-//         scale: [
-//             { value: 1.2, easing: 'linear' }, 
-//             { value: 1.1, easing: 'linear' }
-//         ],
-
-//         // 3. Timing and Loop Settings
-//         duration: 80000, // Very slow duration (80 seconds)
-//         easing: 'linear', // Consistent speed for the Ken Burns look
-//         loop: true, // Infinite loop
-//         direction: 'alternate', // Seamless transition: moves forwards, then backwards
-        
-//         // Ensure the image is initially positioned correctly before the animation starts
-//         // This is handled by the CSS, but good practice to include in JS if needed:
-//         // transform: 'translate(-10%, -10%) scale(1.2)'
-//     });
-// });
 </script>

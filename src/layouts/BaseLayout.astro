@@ -43,52 +43,13 @@ const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '/index.
     {isHomePage && <Skeleton />}
     
     <!-- Vapor Effect -->
-    <VaporEffect />
+    {isHomePage && <VaporEffect />}
     
     <!-- Main Content with Fade-in -->
-    <div class="content-layer">
+    <div class={`${isHomePage ? 'home-content-layer' : 'content-layer'}`}>
       <!-- Slot for injecting content from pages -->
       <slot />
     </div>
     
-    <!-- WebGL Loading Script - DISABLED FOR DEVELOPMENT -->
-    <!-- <script>
-      // High-end WebGL loading sequence
-      document.addEventListener('DOMContentLoaded', async function() {
-        const loadingScreen = document.getElementById('webglLoadingScreen');
-        const canvasContainer = document.getElementById('webglCanvasContainer');
-        const mainContent = document.getElementById('mainContent');
-        
-        if (!loadingScreen || !canvasContainer || !mainContent) return;
-        
-        try {
-          // Dynamically import the subtle vapor loader
-          const { initSubtleVaporLoader } = await import('../scripts/subtle-vapor-loader.js');
-          
-          // Initialize the subtle vapor WebGL loader
-          initSubtleVaporLoader(canvasContainer);
-          
-          // Listen for loading completion
-          document.addEventListener('mysticalLoadingComplete', () => {
-            // Show main content with elegant fade-in
-            setTimeout(() => {
-              mainContent.classList.add('loaded');
-            }, 200);
-            
-            // Remove loading screen from DOM after fade completes
-            setTimeout(() => {
-              loadingScreen.remove();
-            }, 700);
-          });
-        } catch (error) {
-          console.error('Failed to load WebGL mystical loader:', error);
-          // Fallback to simple fade-in
-          setTimeout(() => {
-            mainContent.classList.add('loaded');
-            loadingScreen.remove();
-          }, 1000);
-        }
-      });
-    </script> -->
   </body>
 </html>

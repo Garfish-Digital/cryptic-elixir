@@ -143,6 +143,7 @@ const allCollections = generateCollections();
       card.innerHTML = `
         <div class="card-content ancient-parchment-texture">
           <h3 class="card-title text=[#1E1B2E]">${item.title}</h3>
+            <div class="mystical-divider-card"></div>
           <div class="card-footer">
             <span class="card-price">${item.price}</span>
           </div>
@@ -210,8 +211,21 @@ const allCollections = generateCollections();
         document.body.style.overflow = '';
       }
 
-      modalClose.addEventListener('click', closeModal);
-      modalBackdrop.addEventListener('click', closeModal);
+      // Enhanced mobile-friendly event handling
+      if (modalClose) {
+        // Add both click and touchend for better mobile support
+        modalClose.addEventListener('click', closeModal);
+        modalClose.addEventListener('touchend', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          closeModal();
+        });
+      }
+
+      if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('touchend', closeModal);
+      }
       
       // Close on escape key
       document.addEventListener('keydown', (e) => {
@@ -229,6 +243,7 @@ const allCollections = generateCollections();
         <div class="modal-card">
           <div class="modal-card-category">${item.category.slice(0, -1)}</div>
           <h2 class="modal-card-title">${item.title}</h2>
+          <hr class="modal-card-rule"/>
           <p class="modal-card-description">${item.description}</p>
           <div class="modal-card-details">
             <div class="modal-card-price">${item.price}</div>
@@ -381,7 +396,6 @@ const allCollections = generateCollections();
       position: relative;
       z-index: 2;
       /* Parchment background like sanctum page */
-    
     }
 
     .card-content::before {

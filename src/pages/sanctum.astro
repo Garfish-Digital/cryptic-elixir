@@ -188,11 +188,11 @@ import Navigation from "../components/Navigation.astro";
       // Initialize typewriter placeholders
       initTypewriterPlaceholders();
       
-      // Start scroll animation after 3000ms
+      // Start scroll animation after 1800ms
       setTimeout(() => {
         console.log('Starting scroll animation...');
         initScrollUnfurling();
-      }, 3000);
+      }, 1800);
       
       // Initialize form validation
       initFormValidation();
@@ -889,7 +889,7 @@ import Navigation from "../components/Navigation.astro";
         setTimeout(() => {
           // Navigate to home page after closing success modal
           window.location.href = '/';
-        }, 3000);
+        }, 1500);
       }
       
       function showError(message: string) {
@@ -1050,31 +1050,6 @@ import Navigation from "../components/Navigation.astro";
       font-family: 'Crimson Text', serif;
     font-family: 'Dancing Script', cursive;
 
-    }
-
-    .mystical-divider {
-      width: 100px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent 0%, rgb(44, 44, 44, .25) 50%, transparent 100%);
-      margin: 1rem auto;
-      position: relative;
-    }
-
-    .mystical-divider::before,
-    .mystical-divider::after {
-      content: '✦';
-      position: absolute;
-      top: -8px;
-      color: rgb(44, 44, 44, .25);
-      font-size: 12px;
-    }
-
-    .mystical-divider::before {
-      left: -15px;
-    }
-
-    .mystical-divider::after {
-      right: -15px;
     }
 
     .sanctum-subtitle {
