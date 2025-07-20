@@ -269,6 +269,10 @@ const allCollections = generateCollections();
         setTimeout(() => {
           modalCartBtn.innerHTML = '<i class="fa-sharp fa-briefcase"></i>';
           modalCartBtn.style.background = "";
+          
+          // Auto-close modal after visual feedback completes
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
         }, 1000);
       });
       

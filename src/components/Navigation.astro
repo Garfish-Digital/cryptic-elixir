@@ -11,12 +11,7 @@ const isCollectionsPage = currentPath === "/collections";
 ---
 
 <nav class="bottom-nav">
-  <!-- {isCollectionsPage && ( -->
-    <button id="filter-trigger" class="nav-icon-link filter-nav-btn" style={`color: ${isCollectionsPage ? 'var(--silver)' : 'var(--leather-light)'};`}>
-      <i class="fa fa-flask-round-potion"></i>
-    </button>
-  <!-- )} -->
-  
+ 
   <a href="/" class="nav-icon-link" data-nav-path="/">
     <i class="fa-sharp fa-castle"></i>
   </a>
@@ -37,6 +32,10 @@ const isCollectionsPage = currentPath === "/collections";
     <i class="fa-sharp fa-candle-holder"></i>
   </a>
 
+    <button id="filter-trigger" class="nav-icon-link filter-nav-btn" style={`color: ${isCollectionsPage ? '#B8B8B8' : '#3A3A3A'};`}>
+      <i class="fa fa-flask-round-potion"></i>
+    </button>
+  
   <button id="satchel-btn" class="nav-icon-satchel">
     <i class="fa-sharp fa-briefcase" id="satchel-icon"></i>
     <span id="cart-count" class="cart-badge">0</span>

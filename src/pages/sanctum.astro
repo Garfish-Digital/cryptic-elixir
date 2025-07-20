@@ -1,12 +1,13 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 import Navigation from "../components/Navigation.astro";
-
 ---
 
-<BaseLayout title="The Sanctum - Cryptic Elixir" description="Contact the guardians of ancient wisdom. Reach out through the mystical veil to connect with our occult knowledge keepers.">
+<BaseLayout
+  title="The Sanctum - Cryptic Elixir"
+  description="Contact the guardians of ancient wisdom. Reach out through the mystical veil to connect with our occult knowledge keepers."
+>
   <main class="sanctum-main">
-
     <!-- Navigation Home Icon -->
     <!-- <nav class="fixed top-32 right-6 z-50">
       <a href="/" class="home-icon-link">
@@ -42,16 +43,16 @@ import Navigation from "../components/Navigation.astro";
               <div class="mystical-divider"></div>
               <!-- <p class="sanctum-subtitle">Contact the Guardians of Ancient Wisdom</p> -->
             </div>
-            
+
             <!-- Contact Form -->
             <form id="sanctum-form" class="sanctum-form">
               <div class="form-group">
                 <div class="input-container">
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    class="form-field" 
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-field"
                     data-placeholder="Your name..."
                     required
                   />
@@ -62,10 +63,10 @@ import Navigation from "../components/Navigation.astro";
               <div class="form-row">
                 <div class="form-group">
                   <div class="input-container">
-                    <input 
-                      type="email" 
-                      id="email" 
-                      name="email" 
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
                       class="form-field"
                       data-placeholder="Email address..."
                     />
@@ -75,10 +76,10 @@ import Navigation from "../components/Navigation.astro";
 
                 <div class="form-group">
                   <div class="input-container">
-                    <input 
-                      type="tel" 
-                      id="phone" 
-                      name="phone" 
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
                       class="form-field"
                       data-placeholder="Phone number..."
                     />
@@ -89,14 +90,15 @@ import Navigation from "../components/Navigation.astro";
 
               <div class="form-group">
                 <div class="input-container textarea-container">
-                  <textarea 
-                    id="additional" 
-                    name="additional" 
-                    rows="3" 
+                  <textarea
+                    id="additional"
+                    name="additional"
+                    rows="3"
                     class="form-field"
-                    data-placeholder="Additional thoughts..."
-                  ></textarea>
-                  <div class="typewriter-placeholder">Additional thoughts...</div>
+                    data-placeholder="Additional thoughts..."></textarea>
+                  <div class="typewriter-placeholder">
+                    Additional thoughts...
+                  </div>
                 </div>
               </div>
 
@@ -104,51 +106,116 @@ import Navigation from "../components/Navigation.astro";
               <div class="wax-seal-container">
                 <div class="wax-blob-container" id="wax-seal">
                   <div class="wax-blob"></div>
-                  <svg class="mystical-sigil" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    class="mystical-sigil"
+                    viewBox="0 0 100 100"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <!-- Outer Circle with Ancient Script -->
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="#400000" stroke-width="1.5" opacity="0.8"/>
-                    
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="none"
+                      stroke="#400000"
+                      stroke-width="1.5"
+                      opacity="0.8"></circle>
+
                     <!-- Star of David (Solomon's Seal) -->
-                    <polygon points="50,20 60,35 75,35 65,50 75,65 60,65 50,80 40,65 25,65 35,50 25,35 40,35" 
-                             fill="none" stroke="#400000" stroke-width="2" opacity="0.9"/>
-                    
+                    <polygon
+                      points="50,20 60,35 75,35 65,50 75,65 60,65 50,80 40,65 25,65 35,50 25,35 40,35"
+                      fill="none"
+                      stroke="#400000"
+                      stroke-width="2"
+                      opacity="0.9"></polygon>
+
                     <!-- Inner Triangle (upward) -->
-                    <polygon points="50,30 65,55 35,55" fill="none" stroke="#400000" stroke-width="1.8" opacity="0.85"/>
-                    
+                    <polygon
+                      points="50,30 65,55 35,55"
+                      fill="none"
+                      stroke="#400000"
+                      stroke-width="1.8"
+                      opacity="0.85"></polygon>
+
                     <!-- Inner Triangle (downward) -->
-                    <polygon points="50,70 35,45 65,45" fill="none" stroke="#400000" stroke-width="1.8" opacity="0.85"/>
-                    
+                    <polygon
+                      points="50,70 35,45 65,45"
+                      fill="none"
+                      stroke="#400000"
+                      stroke-width="1.8"
+                      opacity="0.85"></polygon>
+
                     <!-- Central Eye -->
-                    <circle cx="50" cy="50" r="8" fill="none" stroke="#400000" stroke-width="2" opacity="0.9"/>
-                    <circle cx="50" cy="50" r="4" fill="#400000" opacity="0.7"/>
-                    
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="8"
+                      fill="none"
+                      stroke="#400000"
+                      stroke-width="2"
+                      opacity="0.9"></circle>
+                    <circle cx="50" cy="50" r="4" fill="#400000" opacity="0.7"
+                    ></circle>
+
                     <!-- Mystical Symbols at Cardinal Points -->
                     <!-- Top: Crescent Moon -->
-                    <path d="M48 15 Q50 10 52 15 Q50 18 48 15" fill="#400000" opacity="0.8"/>
-                    
+                    <path
+                      d="M48 15 Q50 10 52 15 Q50 18 48 15"
+                      fill="#400000"
+                      opacity="0.8"></path>
+
                     <!-- Right: Star -->
-                    <path d="M78 50 L80 52 L82 50 L80 48 Z M79 49 L81 51 L79 53 L77 51 Z" fill="#400000" opacity="0.8"/>
-                    
+                    <path
+                      d="M78 50 L80 52 L82 50 L80 48 Z M79 49 L81 51 L79 53 L77 51 Z"
+                      fill="#400000"
+                      opacity="0.8"></path>
+
                     <!-- Bottom: Ankh Symbol -->
-                    <circle cx="50" cy="82" r="2.5" fill="none" stroke="#400000" stroke-width="1.2" opacity="0.8"/>
-                    <line x1="50" y1="84.5" x2="50" y2="92" stroke="#400000" stroke-width="1.5" opacity="0.8"/>
-                    <line x1="47" y1="87" x2="53" y2="87" stroke="#400000" stroke-width="1.2" opacity="0.8"/>
-                    
+                    <circle
+                      cx="50"
+                      cy="82"
+                      r="2.5"
+                      fill="none"
+                      stroke="#400000"
+                      stroke-width="1.2"
+                      opacity="0.8"></circle>
+                    <line
+                      x1="50"
+                      y1="84.5"
+                      x2="50"
+                      y2="92"
+                      stroke="#400000"
+                      stroke-width="1.5"
+                      opacity="0.8"></line>
+                    <line
+                      x1="47"
+                      y1="87"
+                      x2="53"
+                      y2="87"
+                      stroke="#400000"
+                      stroke-width="1.2"
+                      opacity="0.8"></line>
+
                     <!-- Left: Spiral -->
-                    <path d="M18 50 Q20 48 22 50 Q20 52 18 50 Q19 49 21 50" fill="none" stroke="#400000" stroke-width="1.2" opacity="0.8"/>
-                    
+                    <path
+                      d="M18 50 Q20 48 22 50 Q20 52 18 50 Q19 49 21 50"
+                      fill="none"
+                      stroke="#400000"
+                      stroke-width="1.2"
+                      opacity="0.8"></path>
+
                     <!-- Ancient Script around outer circle (decorative dots and lines) -->
                     <g opacity="0.6">
-                      <circle cx="50" cy="8" r="1" fill="#400000"/>
-                      <circle cx="72" cy="18" r="1" fill="#400000"/>
-                      <circle cx="82" cy="40" r="1" fill="#400000"/>
-                      <circle cx="82" cy="60" r="1" fill="#400000"/>
-                      <circle cx="72" cy="82" r="1" fill="#400000"/>
-                      <circle cx="50" cy="92" r="1" fill="#400000"/>
-                      <circle cx="28" cy="82" r="1" fill="#400000"/>
-                      <circle cx="18" cy="60" r="1" fill="#400000"/>
-                      <circle cx="18" cy="40" r="1" fill="#400000"/>
-                      <circle cx="28" cy="18" r="1" fill="#400000"/>
+                      <circle cx="50" cy="8" r="1" fill="#400000"></circle>
+                      <circle cx="72" cy="18" r="1" fill="#400000"></circle>
+                      <circle cx="82" cy="40" r="1" fill="#400000"></circle>
+                      <circle cx="82" cy="60" r="1" fill="#400000"></circle>
+                      <circle cx="72" cy="82" r="1" fill="#400000"></circle>
+                      <circle cx="50" cy="92" r="1" fill="#400000"></circle>
+                      <circle cx="28" cy="82" r="1" fill="#400000"></circle>
+                      <circle cx="18" cy="60" r="1" fill="#400000"></circle>
+                      <circle cx="18" cy="40" r="1" fill="#400000"></circle>
+                      <circle cx="28" cy="18" r="1" fill="#400000"></circle>
                     </g>
                   </svg>
                 </div>
@@ -162,71 +229,75 @@ import Navigation from "../components/Navigation.astro";
     <!-- Success Message -->
     <div id="success-modal" class="success-modal">
       <div class="success-content ancient-parchment-texture">
-        <i class="fa-sharp fa-wreath-laurel wreath-i" style="color: #3A3A3A"></i>
+        <i class="fa-sharp fa-wreath-laurel wreath-i" style="color: #3A3A3A"
+        ></i>
         <h2>Welcome</h2>
         <p>Your message has been received by the Sanctum.</p>
         <button id="close-success" class="close-success-btn">
-            <i class="fa-sharp fa-handshake-angle handshake-i" style="color: #3A3A3A"></i>
+          <i
+            class="fa-sharp fa-handshake-angle handshake-i"
+            style="color: #3A3A3A"></i>
         </button>
       </div>
     </div>
   </main>
 
   <script>
+    console.log("Sanctum script loading...");
 
-    console.log('Sanctum script loading...');
-    
-    let mouseX = 0, mouseY = 0;
-    let vaporX = 0, vaporY = 0;
+    let mouseX = 0,
+      mouseY = 0;
+    let vaporX = 0,
+      vaporY = 0;
 
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM loaded, initializing...');
-      
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("DOM loaded, initializing...");
+
       // Initialize vapor cursor trail
       initVaporTrail();
-      
+
       // Initialize typewriter placeholders
       initTypewriterPlaceholders();
-      
+
       // Start scroll animation after 1800ms
       setTimeout(() => {
-        console.log('Starting scroll animation...');
+        console.log("Starting scroll animation...");
         initScrollUnfurling();
       }, 1800);
-      
+
       // Initialize form validation
       initFormValidation();
     });
 
     function initVaporTrail() {
       // Skip on mobile devices
-      if ('ontouchstart' in window) return;
-      
-      const canvas = document.getElementById('cursor-canvas');
+      if ("ontouchstart" in window) return;
+
+      const canvas = document.getElementById("cursor-canvas");
       if (!canvas) return;
-      
-      const ctx = canvas.getContext('2d');
-      
+
+      const ctx = canvas.getContext("2d");
+
       // Set canvas size
       function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
       resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-      
+      window.addEventListener("resize", resizeCanvas);
+
       // Vapor trail particles
       const particles = [];
-      
+
       // Mouse tracking
       let mouseX = window.innerWidth / 2;
       let mouseY = window.innerHeight / 2;
-      
-      document.addEventListener('mousemove', (e) => {
+
+      document.addEventListener("mousemove", (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
       });
-      
+
       // Create vapor particles
       function createVapor() {
         // Add main trail particle
@@ -238,9 +309,9 @@ import Navigation from "../components/Navigation.astro";
           opacity: 0.8,
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
-          type: 'main'
+          type: "main",
         });
-        
+
         // Add smaller wispy particles
         for (let i = 0; i < 2; i++) {
           particles.push({
@@ -251,112 +322,126 @@ import Navigation from "../components/Navigation.astro";
             opacity: 0.4,
             vx: (Math.random() - 0.5) * 1.2,
             vy: (Math.random() - 0.5) * 1.2,
-            type: 'wisp'
+            type: "wisp",
           });
         }
-        
+
         // Keep particle count manageable
         if (particles.length > 80) {
           particles.splice(0, particles.length - 80);
         }
       }
-      
+
       // Animation loop
       function animate() {
         // Clear with transparency for trail effect
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+        ctx.globalCompositeOperation = "source-over";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
+
         // Create new vapor particles
         createVapor();
-        
+
         // Update and draw particles
-        ctx.globalCompositeOperation = 'screen';
-        
+        ctx.globalCompositeOperation = "screen";
+
         for (let i = particles.length - 1; i >= 0; i--) {
           const p = particles[i];
-          
+
           // Update particle
           p.x += p.vx;
           p.y += p.vy;
           p.life -= 0.02;
           p.size *= 0.99;
           p.opacity *= 0.97;
-          
+
           // Remove dead particles
           if (p.life <= 0 || p.opacity < 0.01) {
             particles.splice(i, 1);
             continue;
           }
-          
+
           // Draw vapor effect
           ctx.save();
-          
-          if (p.type === 'main') {
+
+          if (p.type === "main") {
             // Main vapor trail - larger, more opaque
             const gradient = ctx.createRadialGradient(
-              p.x, p.y, 0,
-              p.x, p.y, p.size
+              p.x,
+              p.y,
+              0,
+              p.x,
+              p.y,
+              p.size
             );
             gradient.addColorStop(0, `rgba(212, 165, 116, ${p.opacity * 0.6})`);
-            gradient.addColorStop(0.4, `rgba(212, 165, 116, ${p.opacity * 0.3})`);
+            gradient.addColorStop(
+              0.4,
+              `rgba(212, 165, 116, ${p.opacity * 0.3})`
+            );
             gradient.addColorStop(1, `rgba(212, 165, 116, 0)`);
-            
+
             ctx.fillStyle = gradient;
             ctx.globalAlpha = p.life * 0.8;
           } else {
             // Wispy particles - smaller, more ethereal
             const gradient = ctx.createRadialGradient(
-              p.x, p.y, 0,
-              p.x, p.y, p.size
+              p.x,
+              p.y,
+              0,
+              p.x,
+              p.y,
+              p.size
             );
             gradient.addColorStop(0, `rgba(212, 165, 116, ${p.opacity * 0.4})`);
-            gradient.addColorStop(0.6, `rgba(212, 165, 116, ${p.opacity * 0.2})`);
+            gradient.addColorStop(
+              0.6,
+              `rgba(212, 165, 116, ${p.opacity * 0.2})`
+            );
             gradient.addColorStop(1, `rgba(212, 165, 116, 0)`);
-            
+
             ctx.fillStyle = gradient;
             ctx.globalAlpha = p.life * 0.5;
           }
-          
+
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx.fill();
-          
+
           ctx.restore();
         }
-        
+
         requestAnimationFrame(animate);
       }
-      
+
       animate();
     }
 
     function initTypewriterPlaceholders() {
-      const containers = document.querySelectorAll('.input-container');
-      
+      const containers = document.querySelectorAll(".input-container");
+
       containers.forEach((container) => {
-        const input = container.querySelector('.form-field');
-        const placeholder = container.querySelector('.typewriter-placeholder');
-        
+        const input = container.querySelector(".form-field");
+        const placeholder = container.querySelector(".typewriter-placeholder");
+
         if (!input || !placeholder) return;
-        
-        const text = placeholder.textContent || '';
+
+        const text = placeholder.textContent || "";
         let typewriterInterval = null;
         let isTyped = false;
-        
+
         // Initially hide placeholder
-        placeholder.style.opacity = '0';
-        placeholder.innerHTML = '';
-        
+        placeholder.style.opacity = "0";
+        placeholder.innerHTML = "";
+
         function typeText() {
           if (isTyped || input.value.length > 0) return;
-          
-          placeholder.style.opacity = '1';
-          placeholder.innerHTML = '';
-          
+
+          placeholder.style.opacity = "1";
+          placeholder.innerHTML = "";
+
           let currentIndex = 0;
-          
+
           typewriterInterval = setInterval(() => {
             if (currentIndex < text.length) {
               placeholder.innerHTML += text[currentIndex];
@@ -367,39 +452,42 @@ import Navigation from "../components/Navigation.astro";
             }
           }, 60); // Typing speed
         }
-        
+
         function clearText() {
           if (typewriterInterval) {
             clearInterval(typewriterInterval);
             typewriterInterval = null;
           }
-          placeholder.style.opacity = '0';
-          placeholder.innerHTML = '';
+          placeholder.style.opacity = "0";
+          placeholder.innerHTML = "";
           isTyped = false;
         }
-        
+
         // Handle focus - start typing effect
-        input.addEventListener('focus', () => {
+        input.addEventListener("focus", () => {
           if (input.value.length === 0) {
             typeText();
           }
         });
-        
+
         // Handle blur - clear text
-        input.addEventListener('blur', () => {
+        input.addEventListener("blur", () => {
           if (input.value.length === 0) {
             clearText();
           }
         });
-        
+
         // Handle typing - hide placeholder when typing
-        input.addEventListener('input', () => {
+        input.addEventListener("input", () => {
           if (input.value.length > 0) {
             clearText();
           } else if (document.activeElement === input) {
             // If field is focused but empty, restart typing
             setTimeout(() => {
-              if (input.value.length === 0 && document.activeElement === input) {
+              if (
+                input.value.length === 0 &&
+                document.activeElement === input
+              ) {
                 typeText();
               }
             }, 100);
@@ -409,504 +497,534 @@ import Navigation from "../components/Navigation.astro";
     }
 
     function initScrollUnfurling() {
-      console.log('Initializing professional scroll unfurling...');
-      
+      console.log("Initializing professional scroll unfurling...");
+
       // Modern ES6+ animation system
       class ProfessionalScrollUnfurler {
         constructor(scrollElement) {
           this.scroll = scrollElement;
-          this.parchment = scrollElement.querySelector('.parchment-container');
-          this.content = scrollElement.querySelector('.parchment-content');
-          this.rodTop = scrollElement.querySelector('.scroll-rod-top');
-          this.rodBottom = scrollElement.querySelector('.scroll-rod-bottom');
-          
-          this.animationState = 'idle';
+          this.parchment = scrollElement.querySelector(".parchment-container");
+          this.content = scrollElement.querySelector(".parchment-content");
+          this.rodTop = scrollElement.querySelector(".scroll-rod-top");
+          this.rodBottom = scrollElement.querySelector(".scroll-rod-bottom");
+
+          this.animationState = "idle";
           this.animations = new Map();
-          
+
           // Custom easing curves for professional motion
           this.easings = {
-            paperUnfurl: 'cubic-bezier(0.19, 1, 0.22, 1)',
-            springBounce: 'cubic-bezier(0.5, -0.3, 0.3, 1.8)',
-            lightingShift: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            contentReveal: 'cubic-bezier(0.16, 1, 0.3, 1)'
+            paperUnfurl: "cubic-bezier(0.19, 1, 0.22, 1)",
+            springBounce: "cubic-bezier(0.5, -0.3, 0.3, 1.8)",
+            lightingShift: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            contentReveal: "cubic-bezier(0.16, 1, 0.3, 1)",
           };
-          
+
           // Check for reduced motion
-          this.respectsReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          
+          this.respectsReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
           this.init();
         }
-        
+
         init() {
           // Set initial professional state
           this.setInitialState();
-          
+
           // Create professional unfurling sequence
           this.createUnfurlingSequence();
         }
-        
+
         setInitialState() {
           // Professional initial positioning
-          this.scroll.style.transform = 'perspective(1000px) rotateX(-25deg) scaleY(0.02) translateZ(-100px)';
-          this.scroll.style.transformOrigin = 'top center';
-          this.scroll.style.opacity = '0';
-          this.scroll.style.filter = 'blur(3px) brightness(0.4) contrast(0.8)';
-          this.scroll.style.willChange = 'transform, opacity, filter';
-          
+          this.scroll.style.transform =
+            "perspective(1000px) rotateX(-25deg) scaleY(0.02) translateZ(-100px)";
+          this.scroll.style.transformOrigin = "top center";
+          this.scroll.style.opacity = "0";
+          this.scroll.style.filter = "blur(3px) brightness(0.4) contrast(0.8)";
+          this.scroll.style.willChange = "transform, opacity, filter";
+
           // Parchment clipping for reveal effect
-          this.parchment.style.clipPath = 'inset(98% 0% 0% 0%)';
-          this.parchment.style.filter = 'drop-shadow(0 0 0 rgba(0,0,0,0))';
-          
+          this.parchment.style.clipPath = "inset(98% 0% 0% 0%)";
+          this.parchment.style.filter = "drop-shadow(0 0 0 rgba(0,0,0,0))";
+
           // Content masking
-          this.content.style.opacity = '0';
-          this.content.style.transform = 'translateY(-50px) scale(0.95)';
-          this.content.style.filter = 'blur(1px)';
-          
+          this.content.style.opacity = "0";
+          this.content.style.transform = "translateY(-50px) scale(0.95)";
+          this.content.style.filter = "blur(1px)";
+
           // Scroll rods
-          [this.rodTop, this.rodBottom].forEach(rod => {
+          [this.rodTop, this.rodBottom].forEach((rod) => {
             if (rod) {
-              rod.style.transform = 'scaleX(0.3) rotateZ(2deg)';
-              rod.style.opacity = '0.3';
-              rod.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))';
+              rod.style.transform = "scaleX(0.3) rotateZ(2deg)";
+              rod.style.opacity = "0.3";
+              rod.style.filter = "drop-shadow(0 2px 4px rgba(0,0,0,0.1))";
             }
           });
         }
-        
+
         createUnfurlingSequence() {
           if (this.respectsReducedMotion) {
             this.createReducedMotionSequence();
             return;
           }
-          
+
           // Professional 7-phase animation sequence
           const phases = [
-            { name: 'materialization', duration: 800 },
-            { name: 'rodActivation', duration: 600 },
-            { name: 'initialUnfurl', duration: 1200 },
-            { name: 'parchmentReveal', duration: 2400 },
-            { name: 'lightingShift', duration: 1000 },
-            { name: 'contentReveal', duration: 1600 },
-            { name: 'finalSettling', duration: 1200 }
+            { name: "materialization", duration: 800 },
+            { name: "rodActivation", duration: 600 },
+            { name: "initialUnfurl", duration: 1200 },
+            { name: "parchmentReveal", duration: 2400 },
+            { name: "lightingShift", duration: 1000 },
+            { name: "contentReveal", duration: 1600 },
+            { name: "finalSettling", duration: 1200 },
           ];
-          
+
           let cumulativeDelay = 0;
-          
+
           phases.forEach((phase, index) => {
             setTimeout(() => {
-              this[`animate${phase.name.charAt(0).toUpperCase() + phase.name.slice(1)}`]();
+              this[
+                `animate${phase.name.charAt(0).toUpperCase() + phase.name.slice(1)}`
+              ]();
             }, cumulativeDelay);
-            
+
             if (index < phases.length - 1) {
               cumulativeDelay += phase.duration * 0.6; // Overlap phases
             }
           });
         }
-        
+
         animateMaterialization() {
-          this.animationState = 'materializing';
-          
+          this.animationState = "materializing";
+
           const keyframes = [
             {
-              transform: 'perspective(1000px) rotateX(-25deg) scaleY(0.02) translateZ(-100px)',
+              transform:
+                "perspective(1000px) rotateX(-25deg) scaleY(0.02) translateZ(-100px)",
               opacity: 0,
-              filter: 'blur(3px) brightness(0.4) contrast(0.8)',
-              offset: 0
+              filter: "blur(3px) brightness(0.4) contrast(0.8)",
+              offset: 0,
             },
             {
-              transform: 'perspective(1000px) rotateX(-12deg) scaleY(0.08) translateZ(-60px)',
+              transform:
+                "perspective(1000px) rotateX(-12deg) scaleY(0.08) translateZ(-60px)",
               opacity: 0.3,
-              filter: 'blur(2px) brightness(0.6) contrast(0.9)',
-              offset: 0.4
+              filter: "blur(2px) brightness(0.6) contrast(0.9)",
+              offset: 0.4,
             },
             {
-              transform: 'perspective(1000px) rotateX(-5deg) scaleY(0.15) translateZ(-20px)',
+              transform:
+                "perspective(1000px) rotateX(-5deg) scaleY(0.15) translateZ(-20px)",
               opacity: 0.7,
-              filter: 'blur(1px) brightness(0.8) contrast(1)',
-              offset: 1
-            }
+              filter: "blur(1px) brightness(0.8) contrast(1)",
+              offset: 1,
+            },
           ];
-          
+
           const animation = this.scroll.animate(keyframes, {
             duration: 800,
             easing: this.easings.paperUnfurl,
-            fill: 'forwards'
+            fill: "forwards",
           });
-          
-          this.animations.set('materialization', animation);
+
+          this.animations.set("materialization", animation);
         }
-        
+
         animateRodActivation() {
           [this.rodTop, this.rodBottom].forEach((rod, index) => {
             if (!rod) return;
-            
+
             const keyframes = [
               {
-                transform: 'scaleX(0.3) rotateZ(2deg)',
+                transform: "scaleX(0.3) rotateZ(2deg)",
                 opacity: 0.3,
-                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
-                offset: 0
+                filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
+                offset: 0,
               },
               {
-                transform: 'scaleX(0.8) rotateZ(0.5deg)',
+                transform: "scaleX(0.8) rotateZ(0.5deg)",
                 opacity: 0.8,
-                filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))',
-                offset: 0.6
+                filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))",
+                offset: 0.6,
               },
               {
-                transform: 'scaleX(1) rotateZ(0deg)',
+                transform: "scaleX(1) rotateZ(0deg)",
                 opacity: 1,
-                filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))',
-                offset: 1
-              }
+                filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.3))",
+                offset: 1,
+              },
             ];
-            
+
             rod.animate(keyframes, {
               duration: 600,
               delay: index * 100,
               easing: this.easings.springBounce,
-              fill: 'forwards'
+              fill: "forwards",
             });
           });
         }
-        
+
         animateInitialUnfurl() {
           const keyframes = [
             {
-              transform: 'perspective(1000px) rotateX(-5deg) scaleY(0.15) translateZ(-20px)',
-              offset: 0
+              transform:
+                "perspective(1000px) rotateX(-5deg) scaleY(0.15) translateZ(-20px)",
+              offset: 0,
             },
             {
-              transform: 'perspective(1000px) rotateX(-2deg) scaleY(0.4) translateZ(-5px)',
-              offset: 0.5
+              transform:
+                "perspective(1000px) rotateX(-2deg) scaleY(0.4) translateZ(-5px)",
+              offset: 0.5,
             },
             {
-              transform: 'perspective(1000px) rotateX(0deg) scaleY(0.7) translateZ(0px)',
-              offset: 1
-            }
+              transform:
+                "perspective(1000px) rotateX(0deg) scaleY(0.7) translateZ(0px)",
+              offset: 1,
+            },
           ];
-          
+
           this.scroll.animate(keyframes, {
             duration: 1200,
             easing: this.easings.paperUnfurl,
-            fill: 'forwards'
+            fill: "forwards",
           });
         }
-        
+
         animateParchmentReveal() {
           // Advanced clip-path animation with edge curl effect
           const clipKeyframes = [
             {
-              clipPath: 'inset(100% 0% 0% 0%)',
-              filter: 'drop-shadow(0 0 0 rgba(0,0,0,0))',
-              offset: 0
+              clipPath: "inset(100% 0% 0% 0%)",
+              filter: "drop-shadow(0 0 0 rgba(0,0,0,0))",
+              offset: 0,
             },
             {
-              clipPath: 'inset(75% 0% 0% 0%)',
-              filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.1))',
-              offset: 0.3
+              clipPath: "inset(75% 0% 0% 0%)",
+              filter: "drop-shadow(0 8px 16px rgba(0,0,0,0.1))",
+              offset: 0.3,
             },
             {
-              clipPath: 'inset(40% 0% 0% 0%)',
-              filter: 'drop-shadow(0 16px 32px rgba(0,0,0,0.15))',
-              offset: 0.6
+              clipPath: "inset(40% 0% 0% 0%)",
+              filter: "drop-shadow(0 16px 32px rgba(0,0,0,0.15))",
+              offset: 0.6,
             },
             {
-              clipPath: 'inset(0% 0% 0% 0%)',
-              filter: 'drop-shadow(0 24px 48px rgba(0,0,0,0.2))',
-              offset: 1
-            }
+              clipPath: "inset(0% 0% 0% 0%)",
+              filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.2))",
+              offset: 1,
+            },
           ];
-          
+
           this.parchment.animate(clipKeyframes, {
             duration: 2400,
             easing: this.easings.paperUnfurl,
-            fill: 'forwards'
+            fill: "forwards",
           });
-          
+
           // Simultaneous scroll completion
           const scrollKeyframes = [
             {
-              transform: 'perspective(1000px) rotateX(0deg) scaleY(0.7) translateZ(0px)',
-              offset: 0
+              transform:
+                "perspective(1000px) rotateX(0deg) scaleY(0.7) translateZ(0px)",
+              offset: 0,
             },
             {
-              transform: 'perspective(1000px) rotateX(1deg) scaleY(0.95) translateZ(2px)',
-              offset: 0.7
+              transform:
+                "perspective(1000px) rotateX(1deg) scaleY(0.95) translateZ(2px)",
+              offset: 0.7,
             },
             {
-              transform: 'perspective(1000px) rotateX(0deg) scaleY(1) translateZ(0px)',
-              offset: 1
-            }
+              transform:
+                "perspective(1000px) rotateX(0deg) scaleY(1) translateZ(0px)",
+              offset: 1,
+            },
           ];
-          
+
           this.scroll.animate(scrollKeyframes, {
             duration: 2400,
             easing: this.easings.paperUnfurl,
-            fill: 'forwards'
+            fill: "forwards",
           });
         }
-        
+
         animateLightingShift() {
           // Professional lighting and texture reveal
           const lightingKeyframes = [
             {
-              filter: 'blur(1px) brightness(0.8) contrast(1)',
-              offset: 0
+              filter: "blur(1px) brightness(0.8) contrast(1)",
+              offset: 0,
             },
             {
-              filter: 'blur(0.5px) brightness(0.95) contrast(1.05)',
-              offset: 0.5
+              filter: "blur(0.5px) brightness(0.95) contrast(1.05)",
+              offset: 0.5,
             },
             {
-              filter: 'blur(0px) brightness(1) contrast(1.1)',
-              offset: 1
-            }
+              filter: "blur(0px) brightness(1) contrast(1.1)",
+              offset: 1,
+            },
           ];
-          
+
           this.scroll.animate(lightingKeyframes, {
             duration: 1000,
             easing: this.easings.lightingShift,
-            fill: 'forwards'
+            fill: "forwards",
           });
         }
-        
+
         animateContentReveal() {
           const contentKeyframes = [
             {
               opacity: 0,
-              transform: 'translateY(-50px) scale(0.95)',
-              filter: 'blur(1px)',
-              offset: 0
+              transform: "translateY(-50px) scale(0.95)",
+              filter: "blur(1px)",
+              offset: 0,
             },
             {
               opacity: 0.3,
-              transform: 'translateY(-20px) scale(0.98)',
-              filter: 'blur(0.5px)',
-              offset: 0.4
+              transform: "translateY(-20px) scale(0.98)",
+              filter: "blur(0.5px)",
+              offset: 0.4,
             },
             {
               opacity: 1,
-              transform: 'translateY(0px) scale(1)',
-              filter: 'blur(0px)',
-              offset: 1
-            }
+              transform: "translateY(0px) scale(1)",
+              filter: "blur(0px)",
+              offset: 1,
+            },
           ];
-          
+
           this.content.animate(contentKeyframes, {
             duration: 1600,
             easing: this.easings.contentReveal,
-            fill: 'forwards'
+            fill: "forwards",
           });
         }
-        
+
         animateFinalSettling() {
           // Micro-animations for professional polish
           const settleKeyframes = [
             {
-              transform: 'perspective(1000px) rotateX(0deg) scaleY(1) translateZ(0px) translateY(0px)',
-              offset: 0
+              transform:
+                "perspective(1000px) rotateX(0deg) scaleY(1) translateZ(0px) translateY(0px)",
+              offset: 0,
             },
             {
-              transform: 'perspective(1000px) rotateX(0.5deg) scaleY(1.005) translateZ(1px) translateY(-2px)',
-              offset: 0.3
+              transform:
+                "perspective(1000px) rotateX(0.5deg) scaleY(1.005) translateZ(1px) translateY(-2px)",
+              offset: 0.3,
             },
             {
-              transform: 'perspective(1000px) rotateX(-0.2deg) scaleY(0.998) translateZ(-0.5px) translateY(1px)',
-              offset: 0.7
+              transform:
+                "perspective(1000px) rotateX(-0.2deg) scaleY(0.998) translateZ(-0.5px) translateY(1px)",
+              offset: 0.7,
             },
             {
-              transform: 'perspective(1000px) rotateX(0deg) scaleY(1) translateZ(0px) translateY(0px)',
-              offset: 1
-            }
+              transform:
+                "perspective(1000px) rotateX(0deg) scaleY(1) translateZ(0px) translateY(0px)",
+              offset: 1,
+            },
           ];
-          
+
           this.scroll.animate(settleKeyframes, {
             duration: 1200,
             easing: this.easings.springBounce,
-            fill: 'forwards'
+            fill: "forwards",
           });
-          
+
           setTimeout(() => {
-            this.animationState = 'complete';
+            this.animationState = "complete";
             this.startAmbientAnimations();
           }, 1200);
         }
-        
+
         startAmbientAnimations() {
           // Subtle breathing animation for professional polish
           const breatheKeyframes = [
-            { transform: 'perspective(1000px) translateY(0px) rotateX(0deg)' },
-            { transform: 'perspective(1000px) translateY(-1px) rotateX(0.1deg)' },
-            { transform: 'perspective(1000px) translateY(0px) rotateX(0deg)' }
+            { transform: "perspective(1000px) translateY(0px) rotateX(0deg)" },
+            {
+              transform: "perspective(1000px) translateY(-1px) rotateX(0.1deg)",
+            },
+            { transform: "perspective(1000px) translateY(0px) rotateX(0deg)" },
           ];
-          
+
           this.scroll.animate(breatheKeyframes, {
             duration: 4000,
             iterations: Infinity,
-            easing: 'ease-in-out'
+            easing: "ease-in-out",
           });
         }
-        
+
         createReducedMotionSequence() {
           // Respectful reduced motion version
-          this.scroll.animate([
-            { opacity: 0, transform: 'scale(0.95)' },
-            { opacity: 1, transform: 'scale(1)' }
-          ], {
-            duration: 800,
-            easing: 'ease-out',
-            fill: 'forwards'
-          });
-          
-          this.content.animate([
-            { opacity: 0 },
-            { opacity: 1 }
-          ], {
+          this.scroll.animate(
+            [
+              { opacity: 0, transform: "scale(0.95)" },
+              { opacity: 1, transform: "scale(1)" },
+            ],
+            {
+              duration: 800,
+              easing: "ease-out",
+              fill: "forwards",
+            }
+          );
+
+          this.content.animate([{ opacity: 0 }, { opacity: 1 }], {
             duration: 600,
             delay: 200,
-            easing: 'ease-out',
-            fill: 'forwards'
+            easing: "ease-out",
+            fill: "forwards",
           });
         }
       }
-      
+
       // Initialize the professional unfurling system
-      const scroll = document.getElementById('ancient-scroll');
+      const scroll = document.getElementById("ancient-scroll");
       if (!scroll) {
-        console.error('Ancient scroll element not found!');
+        console.error("Ancient scroll element not found!");
         return;
       }
-      
+
       const unfurler = new ProfessionalScrollUnfurler(scroll);
-      console.log('Professional scroll unfurling system initialized');
+      console.log("Professional scroll unfurling system initialized");
     }
 
     function initFormValidation() {
-      const form = document.getElementById('sanctum-form') as HTMLFormElement;
-      const successModal = document.getElementById('success-modal') as HTMLElement;
-      const closeBtn = document.getElementById('close-success') as HTMLElement;
-      const waxSeal = document.getElementById('wax-seal') as HTMLElement;
-      
+      const form = document.getElementById("sanctum-form") as HTMLFormElement;
+      const successModal = document.getElementById(
+        "success-modal"
+      ) as HTMLElement;
+      const closeBtn = document.getElementById("close-success") as HTMLElement;
+      const waxSeal = document.getElementById("wax-seal") as HTMLElement;
+
       if (!form || !successModal || !closeBtn || !waxSeal) return;
-      
+
       // Track form validity
       let isFormValid = false;
       let isSealed = false;
-      
+
       // Validate form and enable/disable wax seal
       function validateForm() {
         const formData = new FormData(form);
-        const name = formData.get('name')?.toString()?.trim();
-        const email = formData.get('email')?.toString()?.trim();
-        const phone = formData.get('phone')?.toString()?.trim();
-        
+        const name = formData.get("name")?.toString()?.trim();
+        const email = formData.get("email")?.toString()?.trim();
+        const phone = formData.get("phone")?.toString()?.trim();
+
         const nameValid = !!name;
         const contactValid = !!(email || phone);
         isFormValid = nameValid && contactValid;
-        
+
         // Enable/disable wax seal based on validation
         if (isFormValid && !isSealed) {
-          waxSeal.classList.add('enabled');
+          waxSeal.classList.add("enabled");
         } else if (!isFormValid) {
-          waxSeal.classList.remove('enabled');
+          waxSeal.classList.remove("enabled");
         }
       }
-      
+
       // Validate form on input changes
-      const formInputs = form.querySelectorAll('input, textarea');
-      formInputs.forEach(input => {
-        input.addEventListener('input', validateForm);
-        input.addEventListener('blur', validateForm);
+      const formInputs = form.querySelectorAll("input, textarea");
+      formInputs.forEach((input) => {
+        input.addEventListener("input", validateForm);
+        input.addEventListener("blur", validateForm);
       });
-      
+
       // Initial validation
       validateForm();
-      
+
       // Handle wax seal click
-      waxSeal.addEventListener('click', (e) => {
+      waxSeal.addEventListener("click", (e) => {
         e.preventDefault();
-        
+
         if (!isFormValid || isSealed) return;
-        
+
         // Trigger wax seal animation
-        waxSeal.classList.add('clicked');
+        waxSeal.classList.add("clicked");
         isSealed = true;
-        
+
         // Show success modal after 4000ms
         setTimeout(() => {
           showSuccess();
         }, 4000);
       });
-      
+
       // Prevent form submission through enter key
-      form.addEventListener('submit', (e) => {
+      form.addEventListener("submit", (e) => {
         e.preventDefault();
-        
+
         if (!isFormValid) {
           if (!document.querySelector('input[name="name"]')?.value?.trim()) {
-            showError('Name is required to enter the sanctum');
+            showError("Name is required to enter the sanctum");
             return;
           }
-          
-          const email = document.querySelector('input[name="email"]')?.value?.trim();
-          const phone = document.querySelector('input[name="phone"]')?.value?.trim();
+
+          const email = document
+            .querySelector('input[name="email"]')
+            ?.value?.trim();
+          const phone = document
+            .querySelector('input[name="phone"]')
+            ?.value?.trim();
           if (!email && !phone) {
-            showError('Please provide either email or phone to complete the ritual');
+            showError(
+              "Please provide either email or phone to complete the ritual"
+            );
             return;
           }
         }
       });
-      
-      closeBtn.addEventListener('click', hideSuccess);
-      successModal.addEventListener('click', (e) => {
+
+      closeBtn.addEventListener("click", hideSuccess);
+      successModal.addEventListener("click", (e) => {
         if (e.target === successModal) hideSuccess();
       });
-      
+
       function showSuccess() {
-        successModal.style.display = 'flex';
-        successModal.style.opacity = '0';
-        
+        successModal.style.display = "flex";
+        successModal.style.opacity = "0";
+
         setTimeout(() => {
-          successModal.style.opacity = '1';
+          successModal.style.opacity = "1";
         }, 10);
-        
+
         // Reset form
         form.reset();
-        
+
         // Reset all placeholders
-        document.querySelectorAll('.typewriter-placeholder').forEach(placeholder => {
-          const placeholderElement = placeholder as HTMLElement;
-          placeholderElement.style.opacity = '0';
-          placeholderElement.innerHTML = '';
-        });
+        document
+          .querySelectorAll(".typewriter-placeholder")
+          .forEach((placeholder) => {
+            const placeholderElement = placeholder as HTMLElement;
+            placeholderElement.style.opacity = "0";
+            placeholderElement.innerHTML = "";
+          });
       }
-      
+
       function hideSuccess() {
-        successModal.style.opacity = '0';
+        successModal.style.opacity = "0";
         setTimeout(() => {
-          successModal.style.display = 'none';
+          successModal.style.display = "none";
         }, 300);
         setTimeout(() => {
           // Navigate to home page after closing success modal
-          window.location.href = '/';
-        }, 1500);
+          window.location.href = "/";
+        }, 1200);
       }
-      
+
       function showError(message: string) {
         // Create temporary error notification
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-notification';
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "error-notification";
         errorDiv.textContent = message;
         document.body.appendChild(errorDiv);
-        
+
         setTimeout(() => {
-          errorDiv.style.opacity = '1';
-          errorDiv.style.transform = 'translateY(0)';
+          errorDiv.style.opacity = "1";
+          errorDiv.style.transform = "translateY(0)";
         }, 10);
-        
+
         setTimeout(() => {
-          errorDiv.style.opacity = '0';
-          errorDiv.style.transform = 'translateY(-20px)';
+          errorDiv.style.opacity = "0";
+          errorDiv.style.transform = "translateY(-20px)";
           setTimeout(() => errorDiv.remove(), 300);
         }, 3000);
       }
@@ -923,7 +1041,12 @@ import Navigation from "../components/Navigation.astro";
       padding: 2rem;
       padding-bottom: 8rem; /* Space for bottom navigation */
       position: relative;
-      background: linear-gradient(135deg, var(--bg-mystical) 0%, var(--background-dark) 50%, var(--bg-mystical) 100%);
+      background: linear-gradient(
+        135deg,
+        var(--bg-mystical) 0%,
+        var(--background-dark) 50%,
+        var(--bg-mystical) 100%
+      );
     }
 
     /* Branding Header */
@@ -934,14 +1057,14 @@ import Navigation from "../components/Navigation.astro";
     }
 
     .branding-header h1 {
-      font-family: 'Crimson Text', serif;
+      font-family: "Crimson Text", serif;
       color: var(--text-mystical);
       text-shadow: 0 0 20px rgba(212, 165, 116, 0.5);
       margin-bottom: 0.5rem;
     }
 
     .branding-header p {
-      font-family: 'Arapey', serif;
+      font-family: "Arapey", serif;
       color: var(--gold);
       margin-bottom: 1rem;
     }
@@ -972,7 +1095,7 @@ import Navigation from "../components/Navigation.astro";
       opacity: 0;
       /* background: linear-gradient(135deg, var(--leather) 0%, var(--leather-light) 100%); */
       /* border-radius: 12px; */
-      box-shadow: 
+      box-shadow:
         0 25px 80px rgba(0, 0, 0, 0.4),
         inset 0 2px 10px rgba(212, 165, 116, 0.1);
       overflow: hidden;
@@ -981,52 +1104,70 @@ import Navigation from "../components/Navigation.astro";
       transform-style: preserve-3d;
     }
 
-
-    /* .parchment-container {
-      background: 
-        linear-gradient(135deg, var(--parchment-light) 0%, var(--parchment) 100%),
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
-      min-height: 500px;
-      position: relative;
-    } */
-
     .parchment-container {
-  position: relative;
-  min-height: 500px;
-  /* Layered backgrounds: base color, subtle stains, noise, and edge shading */
-  background:
+      position: relative;
+      min-height: 500px;
+      /* Layered backgrounds: base color, subtle stains, noise, and edge shading */
+      background:
     /* Edge vignette for depth */
-    radial-gradient(ellipse at 50% 100%, rgba(120, 90, 40, 0.03) 0%, transparent 70%),
-    radial-gradient(ellipse at 50% 0%, rgba(120, 90, 40, 0.10) 0%, transparent 70%),
-    /* Subtle stains */
-    radial-gradient(circle at 30% 40%, rgba(180, 150, 90, 0.04) 0%, transparent 60%),
-    radial-gradient(circle at 70% 60%, rgba(180, 150, 90, 0.06) 0%, transparent 60%),
-    /* Main parchment gradient */
-    linear-gradient(120deg, #bdb4a1 0%, #a39571 100%),
-
-    /* SVG noise texture */
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n" x="0" y="0"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="2"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.08"/></svg>');
-  background-blend-mode: multiply, multiply, multiply, multiply, normal, normal;
-  /* border-radius: 10px; */
-  box-shadow:
-    0 8px 40px 0 rgba(120, 90, 40, 0.18),
-    /* 0 1.5px 0 0 #fff inset, */
-    0 0 0 2px rgba(180, 150, 90, 0.08) inset;
-  /* border: 1.5px solid #e7d3a1; */
-  overflow: hidden;
-}
+        radial-gradient(
+          ellipse at 50% 100%,
+          rgba(120, 90, 40, 0.03) 0%,
+          transparent 70%
+        ),
+        radial-gradient(
+          ellipse at 50% 0%,
+          rgba(120, 90, 40, 0.1) 0%,
+          transparent 70%
+        ),
+        /* Subtle stains */
+          radial-gradient(
+            circle at 30% 40%,
+            rgba(180, 150, 90, 0.04) 0%,
+            transparent 60%
+          ),
+        radial-gradient(
+          circle at 70% 60%,
+          rgba(180, 150, 90, 0.06) 0%,
+          transparent 60%
+        ),
+        /* Main parchment gradient */
+          linear-gradient(120deg, #bdb4a1 0%, #a39571 100%),
+        /* SVG noise texture */
+          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n" x="0" y="0"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="2"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.08"/></svg>');
+      background-blend-mode: multiply, multiply, multiply, multiply, normal,
+        normal;
+      /* border-radius: 10px; */
+      box-shadow:
+        0 8px 40px 0 rgba(120, 90, 40, 0.18),
+        /* 0 1.5px 0 0 #fff inset, */ 0 0 0 2px rgba(180, 150, 90, 0.08) inset;
+      /* border: 1.5px solid #e7d3a1; */
+      overflow: hidden;
+    }
 
     .parchment-container::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: 
-        radial-gradient(ellipse at 20% 30%, rgba(45, 24, 16, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 70%, rgba(45, 24, 16, 0.06) 0%, transparent 60%),
-        linear-gradient(45deg, transparent 30%, rgba(212, 165, 116, 0.03) 50%, transparent 70%);
+      background: radial-gradient(
+          ellipse at 20% 30%,
+          rgba(45, 24, 16, 0.04) 0%,
+          transparent 60%
+        ),
+        radial-gradient(
+          ellipse at 80% 70%,
+          rgba(45, 24, 16, 0.06) 0%,
+          transparent 60%
+        ),
+        linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(212, 165, 116, 0.03) 50%,
+          transparent 70%
+        );
       pointer-events: none;
     }
 
@@ -1044,12 +1185,11 @@ import Navigation from "../components/Navigation.astro";
     .sanctum-title {
       font-size: 2.75rem;
       font-weight: 800;
-      color: rgb(44, 44, 44, .5);
+      color: rgb(44, 44, 44, 0.5);
       margin-bottom: 1rem;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      font-family: 'Crimson Text', serif;
-    font-family: 'Dancing Script', cursive;
-
+      font-family: "Crimson Text", serif;
+      font-family: "Dancing Script", cursive;
     }
 
     .sanctum-subtitle {
@@ -1087,8 +1227,11 @@ import Navigation from "../components/Navigation.astro";
       /* border-radius: 8px; Slightly rounded corners */
       color: #3e2723; /* Dark brown for input text */
       font-size: 1rem;
-      font-family: 'Arapey', serif;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      font-family: "Arapey", serif;
+      transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
       box-sizing: border-box; /* Include padding in width */
     }
 
@@ -1105,7 +1248,7 @@ import Navigation from "../components/Navigation.astro";
       top: 50%;
       left: 1rem;
       transform: translateY(-50%);
-      font-family: 'Dancing Script', cursive;
+      font-family: "Dancing Script", cursive;
       color: rgba(139, 122, 103, 0.9);
       font-size: 1rem;
       pointer-events: none;
@@ -1114,7 +1257,7 @@ import Navigation from "../components/Navigation.astro";
       transition: opacity 0.3s ease;
       white-space: nowrap;
     }
-    
+
     .textarea-container .typewriter-placeholder {
       top: 1.5rem;
       transform: translateY(0);
@@ -1129,7 +1272,6 @@ import Navigation from "../components/Navigation.astro";
     .textarea-container {
       min-height: 120px;
     }
-
 
     /* Wax Seal Submit */
     .wax-seal-container {
@@ -1158,13 +1300,13 @@ import Navigation from "../components/Navigation.astro";
       /* width: 75px;
       height: 75px; */
       position: relative;
-      
+
       /* Create the wobbly blob shape using border-radius */
       border-radius: 48% 52% 47% 53% / 51% 49% 51% 49%;
-      
+
       /* Blood red base color */
       background: #8b0000;
-      
+
       /* Layered inset shadows for depth and thickness */
       box-shadow: 
         /* Primary depth - immediate edge definition */
@@ -1172,83 +1314,99 @@ import Navigation from "../components/Navigation.astro";
         inset 0 -2px 4px rgba(120, 0, 0, 0.3),
         inset 2px 0 4px rgba(0, 0, 0, 0.35),
         inset -2px 0 4px rgba(0, 0, 0, 0.35),
-        
-        /* Secondary layer - creates roundness */
-        inset 0 4px 8px rgba(0, 0, 0, 0.3),
+        /* Secondary layer - creates roundness */ inset 0 4px 8px
+          rgba(0, 0, 0, 0.3),
         inset 0 -4px 8px rgba(100, 0, 0, 0.25),
         inset 4px 0 8px rgba(0, 0, 0, 0.25),
         inset -4px 0 8px rgba(0, 0, 0, 0.25),
-        
-        /* Tertiary layer - deeper shadows for thickness */
-        inset 0 8px 16px rgba(0, 0, 0, 0.25),
+        /* Tertiary layer - deeper shadows for thickness */ inset 0 8px 16px
+          rgba(0, 0, 0, 0.25),
         inset 0 -8px 16px rgba(80, 0, 0, 0.2),
         inset 8px 0 16px rgba(0, 0, 0, 0.2),
         inset -8px 0 16px rgba(0, 0, 0, 0.2),
-        
-        /* Quaternary layer - subtle highlights */
-        inset 0 12px 24px rgba(255, 100, 100, 0.1),
+        /* Quaternary layer - subtle highlights */ inset 0 12px 24px
+          rgba(255, 100, 100, 0.1),
         inset 0 -12px 24px rgba(60, 0, 0, 0.15),
-        
-        /* Deep center shadow for maximum depth */
-        inset 0 0 40px rgba(0, 0, 0, 0.3),
+        /* Deep center shadow for maximum depth */ inset 0 0 40px
+          rgba(0, 0, 0, 0.3),
         inset 0 0 60px rgba(40, 0, 0, 0.2),
-        
-        /* Edge highlights for glossy effect */
-        inset 0 20px 40px rgba(255, 150, 150, 0.05),
+        /* Edge highlights for glossy effect */ inset 0 20px 40px
+          rgba(255, 150, 150, 0.05),
         inset 0 -20px 40px rgba(40, 0, 0, 0.1),
-        
-        /* Outer shadow for lifting off surface */
-        0 8px 32px rgba(0, 0, 0, 0.3),
+        /* Outer shadow for lifting off surface */ 0 8px 32px rgba(0, 0, 0, 0.3),
         0 4px 16px rgba(139, 0, 0, 0.2);
-      
+
       /* Additional gradients for complex coloring */
       background: 
         /* Surface highlight */
-        radial-gradient(ellipse at 30% 30%, rgba(255, 100, 100, 0.2) 0%, transparent 40%),
-        
+        radial-gradient(
+          ellipse at 30% 30%,
+          rgba(255, 100, 100, 0.2) 0%,
+          transparent 40%
+        ),
         /* Secondary highlight */
-        radial-gradient(ellipse at 70% 20%, rgba(255, 150, 150, 0.1) 0%, transparent 30%),
-        
+          radial-gradient(
+            ellipse at 70% 20%,
+            rgba(255, 150, 150, 0.1) 0%,
+            transparent 30%
+          ),
         /* Deep color variation */
-        radial-gradient(ellipse at 50% 50%, rgba(139, 0, 0, 0.8) 0%, rgba(100, 0, 0, 0.9) 50%, rgba(80, 0, 0, 1) 100%),
-        
-        /* Base blood red */
-        #8b0000;
-      
+          radial-gradient(
+            ellipse at 50% 50%,
+            rgba(139, 0, 0, 0.8) 0%,
+            rgba(100, 0, 0, 0.9) 50%,
+            rgba(80, 0, 0, 1) 100%
+          ),
+        /* Base blood red */ #8b0000;
+
+        /* Enhanced shadows for more bulging effect */
+     
+
+     
+
       transition: all 2000ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Pseudo-element for extra surface detail */
     .wax-blob::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 10%;
       left: 10%;
       width: 30%;
       height: 30%;
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255, 200, 200, 0.15) 0%, transparent 70%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 200, 200, 0.15) 0%,
+        transparent 70%
+      );
       filter: blur(2px);
       transition: all 2000ms ease;
     }
 
     /* Second pseudo-element for additional depth */
     .wax-blob::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 15%;
       right: 15%;
       width: 40%;
       height: 40%;
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(60, 0, 0, 0.2) 0%, transparent 70%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(60, 0, 0, 0.2) 0%,
+        transparent 70%
+      );
       filter: blur(4px);
       transition: all 2000ms ease;
     }
 
     /* Animation for subtle organic movement */
     @keyframes wobble {
-      0%, 100% {
+      0%,
+      100% {
         border-radius: 48% 52% 47% 53% / 51% 49% 51% 49%;
       }
       25% {
@@ -1279,10 +1437,10 @@ import Navigation from "../components/Navigation.astro";
       opacity: 0;
       transition: all 2000ms cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
-      
+
       filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.7))
-              drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5))
-              drop-shadow(0 10px 16px rgba(0, 0, 0, 0.3));
+        drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5))
+        drop-shadow(0 10px 16px rgba(0, 0, 0, 0.3));
     }
 
     /* Clicked state */
@@ -1290,46 +1448,61 @@ import Navigation from "../components/Navigation.astro";
       transform: scale(1.2);
       border-radius: 44% 66% 41% 59% / 44% 56% 43% 57%;
       animation: none;
-      
-      /* Enhanced shadows for more bulging effect */
+ /* Blood red base color */
+      background: #8b0000;
+
+      /* Layered inset shadows for depth and thickness */
       box-shadow: 
-        /* Even deeper primary shadows */
-        inset 0 3px 6px rgba(0, 0, 0, 0.3),
-        inset 0 -3px 6px rgba(100, 0, 0, 0.25),
-        inset 3px 0 6px rgba(0, 0, 0, 0.3),
-        inset -3px 0 6px rgba(0, 0, 0, 0.3),
-        
-        /* Stronger secondary layer */
-        inset 0 6px 12px rgba(0, 0, 0, 0.25),
-        inset 0 -6px 12px rgba(80, 0, 0, 0.2),
-        inset 6px 0 12px rgba(0, 0, 0, 0.25),
-        inset -6px 0 12px rgba(0, 0, 0, 0.25),
-        
-        /* Enhanced tertiary layer */
-        inset 0 12px 12px rgba(0, 0, 0, 0.2),
-        inset 0 -12px 12px rgba(60, 0, 0, 0.15),
-        inset 12px 0 12px rgba(0, 0, 0, 0.2),
-        inset -12px 0 12px rgba(0, 0, 0, 0.2),
-        
-        /* Deeper quaternary layer */
-        inset 0 18px 6px rgba(255, 80, 80, 0.12),
-        inset 0 -18px 6px rgba(40, 0, 0, 0.15),
-        
-        /* Extra deep center shadow for maximum bulge */
-        inset 0 0 60px rgba(0, 0, 0, 0.25),
-        inset 0 0 80px rgba(30, 0, 0, 0.2),
-        
-        /* Additional depth layers */
-        inset 0 30px 60px rgba(255, 120, 120, 0.08),
-        inset 0 -30px 60px rgba(20, 0, 0, 0.12),
-        
-        /* Imprint area shadow */
-        inset -10px -5px 30px rgba(0, 0, 0, 0.6),
-        
-        /* Enhanced outer shadow */
-        0 12px 48px rgba(0, 0, 0, 0.3),
-        /* 0 12px 48px rgba(0, 0, 0, 0.4), */
-        0 6px 24px rgba(139, 0, 0, 0.3);
+        /* Primary depth - immediate edge definition */
+        inset 0 2px 4px rgba(0, 0, 0, 0.4),
+        inset 0 -2px 4px rgba(120, 0, 0, 0.3),
+        inset 2px 0 4px rgba(0, 0, 0, 0.35),
+        inset -2px 0 4px rgba(0, 0, 0, 0.35),
+        /* Secondary layer - creates roundness */ inset 0 4px 8px
+          rgba(0, 0, 0, 0.3),
+        inset 0 -4px 8px rgba(100, 0, 0, 0.25),
+        inset 4px 0 8px rgba(0, 0, 0, 0.25),
+        inset -4px 0 8px rgba(0, 0, 0, 0.25),
+        /* Tertiary layer - deeper shadows for thickness */ inset 0 8px 16px
+          rgba(0, 0, 0, 0.25),
+        inset 0 -8px 16px rgba(80, 0, 0, 0.2),
+        inset 8px 0 16px rgba(0, 0, 0, 0.2),
+        inset -8px 0 16px rgba(0, 0, 0, 0.2),
+        /* Quaternary layer - subtle highlights */ inset 0 12px 24px
+          rgba(255, 100, 100, 0.1),
+        inset 0 -12px 24px rgba(60, 0, 0, 0.15),
+        /* Deep center shadow for maximum depth */ inset 0 0 40px
+          rgba(0, 0, 0, 0.3),
+        inset 0 0 60px rgba(40, 0, 0, 0.2),
+        /* Edge highlights for glossy effect */ inset 0 20px 40px
+          rgba(255, 150, 150, 0.05),
+        inset 0 -20px 40px rgba(40, 0, 0, 0.1),
+        /* Outer shadow for lifting off surface */ 0 8px 32px rgba(0, 0, 0, 0.3),
+        0 4px 16px rgba(139, 0, 0, 0.2);
+
+      /* Additional gradients for complex coloring */
+      background: 
+        /* Surface highlight */
+        radial-gradient(
+          ellipse at 30% 30%,
+          rgba(255, 100, 100, 0.2) 0%,
+          transparent 40%
+        ),
+        /* Secondary highlight */
+          radial-gradient(
+            ellipse at 70% 20%,
+            rgba(255, 150, 150, 0.1) 0%,
+            transparent 30%
+          ),
+        /* Deep color variation */
+          radial-gradient(
+            ellipse at 50% 50%,
+            rgba(139, 0, 0, 0.8) 0%,
+            rgba(100, 0, 0, 0.9) 50%,
+            rgba(80, 0, 0, 1) 100%
+          ),
+        /* Base blood red */ #8b0000;
+    
     }
 
     /* Show signature when clicked */
@@ -1344,7 +1517,11 @@ import Navigation from "../components/Navigation.astro";
       left: 5%;
       width: 25%;
       height: 25%;
-      background: radial-gradient(ellipse at center, rgba(255, 180, 180, 0.12) 0%, transparent 70%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 180, 180, 0.12) 0%,
+        transparent 70%
+      );
     }
 
     .wax-blob-container.clicked .wax-blob::after {
@@ -1352,7 +1529,11 @@ import Navigation from "../components/Navigation.astro";
       right: 10%;
       width: 45%;
       height: 45%;
-      background: radial-gradient(ellipse at center, rgba(40, 0, 0, 0.3) 0%, transparent 70%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(40, 0, 0, 0.3) 0%,
+        transparent 70%
+      );
     }
 
     /* Success Modal */
@@ -1385,37 +1566,46 @@ import Navigation from "../components/Navigation.astro";
     }
 
     .success-content::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(ellipse at center, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(212, 165, 116, 0.1) 0%,
+        transparent 70%
+      );
       border-radius: 14px;
       pointer-events: none;
     }
 
     .wreath-i {
-     font-size: 24px;
-     color: var(--indigo-light) !important;
+      font-size: 24px;
+      color: var(--indigo-light) !important;
     }
 
     .handshake-i {
-     font-size: 24px;
-     color: var(--gold) !important;
+      font-size: 24px;
+      color: var(--gold) !important;
     }
 
     @keyframes sparkle {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.1) rotate(180deg); }
+      0%,
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
+      50% {
+        transform: scale(1.1) rotate(180deg);
+      }
     }
 
     .success-content h2 {
       color: var(--charcoal);
       margin-bottom: 1rem;
       font-size: 1.75rem;
-      font-family: 'Crimson Text', serif;
+      font-family: "Crimson Text", serif;
     }
 
     .success-content p {
@@ -1428,13 +1618,13 @@ import Navigation from "../components/Navigation.astro";
       background: var(--indigo);
       color: var(--gold) !important;
       border: none;
-      padding: .25rem 2rem;
+      padding: 0.25rem 2rem;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
       font-size: 24px;
       transition: all 0.3s ease;
-      font-family: 'Crimson Text', serif;
+      font-family: "Crimson Text", serif;
     }
 
     .close-success-btn:hover {
