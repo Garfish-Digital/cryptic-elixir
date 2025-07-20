@@ -45,3 +45,32 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## WebGL Shader Fine-Tuning (lines 92-129):
+
+  Mist Character:
+  - Line 94: scaledUV = uv * 5.0 - Higher = finer detail, Lower = larger clouds
+  - Line 115: smoothstep(0.3, 0.9, mist) - Adjust 0.3-0.9 range for density threshold
+  - Line 128: mist * 0.3 - Overall opacity (0.1 = very subtle, 0.6 = dense)
+
+  Flow Dynamics:
+  - Line 97: time * 0.002 - Master speed control
+  - Lines 100-101: Flow directions - experiment with negative values for reverse flow
+  - Line 111: sin((uv.y + time) * 2.0) * 0.1 - Upward drift strength
+
+  Visual Style:
+  - Line 126: 0.4 + sin(time * 5.0) * 0.1 - Base gray + variation amount
+  - Lines 108: Layer mixing ratios 0.5 + 0.3 + 0.2 - which noise layer dominates
+
+## CSS Animation Coordination (vapor.css):
+
+  Current Timing:
+  - Above layer: 2s delay → 2s fade-in → 4s fade-out (starts at 4s)
+  - Below layer: 4s delay → 3s fade-in → 4s fade-out (starts at 6s)
+
+  Key Adjustments:
+  - Delay times: When each layer becomes visible
+  - Duration times: How fast the cross-fade happens
+  - Easing functions: ease-in vs ease-out affects transition feel
+
+  The WebGL creates the mist pattern, CSS controls when/how you see it. Perfect combination for fine-tuning!

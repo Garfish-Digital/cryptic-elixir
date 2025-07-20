@@ -1,0 +1,386 @@
+---
+// src/components/Navigation.astro
+// Universal navigation component with cart functionality
+interface Props {
+  showCart?: boolean;
+}
+
+const { showCart = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+const isCollectionsPage = currentPath === "/collections";
+---
+
+<nav class="bottom-nav">
+  {isCollectionsPage && (
+    <button id="filter-trigger" class="nav-icon-link filter-nav-btn">
+      <i class="fa fa-flask-round-potion"></i>
+    </button>
+  )}
+  
+  <a href="/" class={`nav-icon-link ${currentPath === "/" ? "active" : ""}`}>
+    <i class="fa-sharp fa-castle"></i>
+  </a>
+
+  <a
+    href="/collections"
+    class={`nav-icon-link ${currentPath === "/collections" ? "active" : ""}`}
+  >
+    <i class="fa-sharp fa-scroll"></i>
+  </a>
+
+  <a
+    href="/sanctum"
+    class={`nav-icon-link ${currentPath === "/sanctum" ? "active" : ""}`}
+  >
+    <i class="fa-sharp fa-candle-holder"></i>
+  </a>
+
+  <button id="satchel-btn" class="nav-icon-satchel">
+    <i class="fa-sharp fa-briefcase" id="satchel-icon"></i>
+    <span id="cart-count" class="cart-badge">0</span>
+  </button>
+</nav>
+
+<div id="cart-modal" class="cart-modal">
+  <div class="cart-modal-content">
+    <div class="cart-header">
+      <h2>Your Satchel</h2>
+      <button id="close-cart" class="close-btn">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+      <p class="empty-cart">Your satchel awaits ancient wisdom...</p>
+    </div>
+    <div class="cart-footer">
+      <button id="clear-cart" class="clear-cart-btn">Empty Satchel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let cart = [];
+
+  function initializeCart() {
+    const satchelBtn = document.getElementById("satchel-btn");
+    const cartModal = document.getElementById("cart-modal");
+    const closeCart = document.getElementById("close-cart");
+    const clearCart = document.getElementById("clear-cart");
+
+    if (!satchelBtn || !cartModal || !closeCart || !clearCart) return;
+
+    satchelBtn.addEventListener("click", () => {
+      cartModal.classList.add("active");
+      updateCartDisplay();
+    });
+
+    closeCart.addEventListener("click", () => {
+      cartModal.classList.remove("active");
+    });
+
+    clearCart.addEventListener("click", () => {
+      cart = [];
+      updateCartCount();
+      updateCartDisplay();
+    });
+
+    // Close modal when clicking outside
+    cartModal.addEventListener("click", (e) => {
+      if (e.target === cartModal) {
+        cartModal.classList.remove("active");
+      }
+    });
+  }
+
+  function addToCart(item) {
+    const existingItem = cart.find((cartItem) => cartItem.title === item.title);
+    if (!existingItem) {
+      cart.push({ ...item, id: Date.now() });
+      updateCartCount();
+    }
+  }
+
+  function removeFromCart(itemId) {
+    cart = cart.filter((item) => item.id !== itemId);
+    updateCartCount();
+    updateCartDisplay();
+  }
+
+  function updateCartCount() {
+    const cartCount = document.getElementById("cart-count");
+    const satchelIcon = document.getElementById("satchel-icon");
+    if (cartCount) {
+      cartCount.textContent = cart.length;
+      cartCount.style.display = cart.length > 0 ? "block" : "none";
+        satchelIcon.style.color = cart.length > 0 ? "var(--silver)" : "var(--leather-light)";
+    }
+  }
+
+  function updateCartDisplay() {
+    const cartItems = document.getElementById("cart-items");
+    if (!cartItems) return;
+
+    if (cart.length === 0) {
+      cartItems.innerHTML =
+        '<p class="empty-cart">Your satchel awaits mystical treasures...</p>';
+      return;
+    }
+
+    cartItems.innerHTML = cart
+      .map(
+        (item) => `
+        <div class="cart-item flex justify-between">
+          <div class="cart-item-info">
+            <h4>${item.title}</h4>
+            <p>${item.category}</p>
+            <span class="cart-item-price">${item.price}</span>
+          </div>
+          <div>
+            <button class="remove-item-btn" onclick="removeFromCart(${item.id})">
+              <i class="fa-sharp fa-shelves" style="--fa-primary-color: #36454F; --fa-secondary-color: #A9A9A9;"></i>
+            </button>
+            <button class="remove-item-btn" onclick="removeFromCart(${item.id})">
+              <i class="fa-sharp fa-coin-blank" style="--fa-primary-color: #4B0082; --fa-secondary-color: #8A2BE2;"></i>
+            </button>
+          </div>
+        </div>
+      `
+      )
+      .join("");
+  }
+
+  // Make functions available globally
+  window.addToCart = addToCart;
+  window.removeFromCart = removeFromCart;
+
+  // Initialize when DOM is ready
+  document.addEventListener("DOMContentLoaded", initializeCart);
+</script>
+
+<style>
+  /* Bottom Navigation */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--gold);
+    padding: 1rem;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Navigation Icon Styling */
+  .nav-icon-link {
+    color: var(--leather-light);
+    padding: 0.75rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    min-width: 48px;
+    min-height: 48px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .nav-icon-link:hover {
+    color: var(--text-mystical);
+    /* border: 1px solid var(--text-mystical); */
+  }
+
+  .nav-icon-link.active {
+    color: var(--gold);
+    /* border: 1px solid var(--gold); */
+  }
+
+  .nav-icon-satchel {
+    color: var(--leather-light);
+    padding: 0.75rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    min-width: 48px;
+    min-height: 48px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .filter-nav-btn {
+    color: var(--half-silver);
+  }
+
+  .filter-nav-btn:hover {
+    color: var(--silver);
+  }
+
+  .cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: var(--gold);
+    color: var(--charcoal);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* Cart Modal */
+  .cart-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .cart-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .cart-modal-content {
+    background: linear-gradient(
+      135deg,
+      var(--parchment-light) 0%,
+      var(--parchment) 100%
+    );
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .cart-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--leather);
+    color: var(--parchment);
+  }
+
+  .cart-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: var(--parchment);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-items {
+    padding: 1.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .empty-cart {
+    text-align: center;
+    color: var(--charcoal-light);
+    font-style: italic;
+  }
+
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+
+  .cart-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .remove-item-btn:hover {
+    background: #dc2626;
+  }
+
+  .cart-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--gold);
+    text-align: center;
+  }
+
+  .clear-cart-btn {
+    background: var(--leather);
+    color: var(--parchment);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .clear-cart-btn:hover {
+    background: #dc2626;
+  }
+
+  /* Mobile Optimization */
+  @media (max-width: 768px) {
+    .bottom-nav {
+      gap: 1rem;
+      padding: 0.75rem;
+    }
+    
+    .nav-icon-link,
+    .nav-icon-satchel {
+      min-width: 44px;
+      min-height: 44px;
+      font-size: 1.1rem;
+    }
+    
+    .cart-modal-content {
+      width: 95%;
+      margin: 1rem;
+    }
+  }
+</style>

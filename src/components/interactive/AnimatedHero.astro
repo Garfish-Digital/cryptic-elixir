@@ -1,44 +1,114 @@
 ---
 // src/components/interactive/AnimatedHero.astro
-// This component will contain a complex animation.
-// It uses a client:load directive to ensure its JavaScript runs on the client.
+// Simple Ken Burns effect - slow zoom and pan only
+
 ---
-<div class="relative w-full h-96 bg-gradient-to-br from-purple-600 to-indigo-800 flex items-center justify-center rounded-lg overflow-hidden shadow-xl">
-  <h2 class="text-white text-4xl md:text-6xl font-extrabold z-10 animate-fade-in">
-    Dynamic Visuals Await
-  </h2>
-  <!-- Placeholder for a canvas or SVG animation -->
-  <div id="animation-container" class="absolute inset-0 z-0 opacity-20">
-    <!-- This is where your Three.js/WebGL canvas or complex SVG animation will go -->
-    <!-- For now, it's just a visual placeholder -->
-    <div class="w-full h-full flex items-center justify-center text-white text-opacity-50 text-xl">
-      (Complex Animation/WebGL Scene Here)
-    </div>
-  </div>
+
+<div class="animated-hero">
+  <img 
+    src="/images/libraryhero.jpg" 
+    alt="Ancient mystical library"
+    class="hero-image"
+  />
 </div>
 
 <style>
-  /* Basic keyframe for a simple fade-in effect */
-  @keyframes fade-in {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  .animated-hero {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+    /* border-radius: 12px; */
+    /* box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4); */
   }
-  .animate-fade-in {
-    animation: fade-in 1s ease-out forwards;
+
+  .hero-image {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    object-position: bottom left;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    
+    /* Ken Burns animation - back and forth pan */
+    animation: kenBurnsPan 120s linear infinite alternate;
+  }
+
+  @keyframes kenBurnsPan {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(calc(100vw - 100%));
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .animated-hero {
+      height: 50vh;
+      min-height: 400px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .animated-hero {
+      height: 40vh;
+      min-height: 300px;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-image {
+      animation: none;
+      transform: scale(1.1);
+    }
   }
 </style>
 
-<script>
-  // src/components/interactive/AnimatedHero.astro (script section)
-  // This script will run on the client side because of client:load.
-  // You'll integrate your Three.js/WebGL setup here.
-  import { initWebGLScene } from '../../scripts/webgl-scene.js'; // Import your WebGL logic
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('animation-container');
-    if (container) {
-      console.log('AnimatedHero: Initializing WebGL scene...');
-      initWebGLScene(container); // Call your WebGL initialization function
-    }
-  });
+<script>
+
+        // import * as animejsModule from 'animejs';
+    // const anime = animejsModule.default || animejsModule;
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const kenBurnsImage = document.getElementById('hero-image');
+
+//     // Define the Ken Burns animation
+//     anime({
+//         targets: kenBurnsImage,
+//         // 1. Pan Effect (Translation)
+//         // We are moving the image from -10%/-10% to +10%/+10% 
+//         // to create a slow diagonal movement.
+//         translateX: [
+//             { value: '-10%', easing: 'linear' }, 
+//             { value: '10%', easing: 'linear' }
+//         ],
+//         translateY: [
+//             { value: '-10%', easing: 'linear' }, 
+//             { value: '10%', easing: 'linear' }
+//         ],
+        
+//         // 2. Zoom Effect (Scale)
+//         // We'll zoom from a scale of 1.2x to 1.1x (or vice versa, adjust as needed)
+//         scale: [
+//             { value: 1.2, easing: 'linear' }, 
+//             { value: 1.1, easing: 'linear' }
+//         ],
+
+//         // 3. Timing and Loop Settings
+//         duration: 80000, // Very slow duration (80 seconds)
+//         easing: 'linear', // Consistent speed for the Ken Burns look
+//         loop: true, // Infinite loop
+//         direction: 'alternate', // Seamless transition: moves forwards, then backwards
+        
+//         // Ensure the image is initially positioned correctly before the animation starts
+//         // This is handled by the CSS, but good practice to include in JS if needed:
+//         // transform: 'translate(-10%, -10%) scale(1.2)'
+//     });
+// });
 </script>

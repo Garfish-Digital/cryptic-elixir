@@ -18,6 +18,9 @@ interface Props {
 }
 
 const { title = 'Cryptic Elixir', description = 'Occult Literature and Rare Books.' } = Astro.props;
+
+// Check if we're on the home page to conditionally show the skeleton
+const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '/index.html';
 ---
 
 <!DOCTYPE html>
@@ -28,24 +31,19 @@ const { title = 'Cryptic Elixir', description = 'Occult Literature and Rare Book
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script src="https://kit.fontawesome.com/950db21282.js" crossorigin="anonymous"></script>
     <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
 
     <!-- Mystical serif fonts for the occult bookshop -->
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lora:wght@400;500;600&family=Arapey:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lora:wght@400;500;600&family=Arapey:wght@400;500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- Skeleton loading screen -->
-    <Skeleton />
+    <!-- Skeleton loading screen - only on homepage -->
+    {isHomePage && <Skeleton />}
     
     <!-- Vapor Effect -->
     <VaporEffect />
-
-    <!-- High-End WebGL Loading Screen
-        <div class="webgl-loading-screen" id="webglLoadingScreen">
-      <div class="webgl-canvas-container" id="webglCanvasContainer"> -->
-        <!-- Three.js canvas will be inserted here -->
-      <!-- </div> -->
-    <!-- </div> -->
     
     <!-- Main Content with Fade-in -->
     <div class="content-layer">

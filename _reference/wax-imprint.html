@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Red Blob with Signature Stamp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .blob-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .blob {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            
+            /* Create the wobbly blob shape using border-radius */
+            border-radius: 48% 52% 47% 53% / 51% 49% 51% 49%;
+            
+            /* Blood red base color */
+            background: #8b0000;
+            
+            /* Layered inset shadows for depth and thickness */
+            box-shadow: 
+                /* Primary depth - immediate edge definition */
+                inset 0 2px 4px rgba(0, 0, 0, 0.4),
+                inset 0 -2px 4px rgba(120, 0, 0, 0.3),
+                inset 2px 0 4px rgba(0, 0, 0, 0.35),
+                inset -2px 0 4px rgba(0, 0, 0, 0.35),
+                
+                /* Secondary layer - creates roundness */
+                inset 0 4px 8px rgba(0, 0, 0, 0.3),
+                inset 0 -4px 8px rgba(100, 0, 0, 0.25),
+                inset 4px 0 8px rgba(0, 0, 0, 0.25),
+                inset -4px 0 8px rgba(0, 0, 0, 0.25),
+                
+                /* Tertiary layer - deeper shadows for thickness */
+                inset 0 8px 16px rgba(0, 0, 0, 0.25),
+                inset 0 -8px 16px rgba(80, 0, 0, 0.2),
+                inset 8px 0 16px rgba(0, 0, 0, 0.2),
+                inset -8px 0 16px rgba(0, 0, 0, 0.2),
+                
+                /* Quaternary layer - subtle highlights */
+                inset 0 12px 24px rgba(255, 100, 100, 0.1),
+                inset 0 -12px 24px rgba(60, 0, 0, 0.15),
+                
+                /* Deep center shadow for maximum depth */
+                inset 0 0 40px rgba(0, 0, 0, 0.3),
+                inset 0 0 60px rgba(40, 0, 0, 0.2),
+                
+                /* Edge highlights for glossy effect */
+                inset 0 20px 40px rgba(255, 150, 150, 0.05),
+                inset 0 -20px 40px rgba(40, 0, 0, 0.1),
+                
+                /* Outer shadow for lifting off surface */
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 4px 16px rgba(139, 0, 0, 0.2);
+            
+            /* Additional gradients for complex coloring */
+            background: 
+                /* Surface highlight */
+                radial-gradient(ellipse at 30% 30%, rgba(255, 100, 100, 0.2) 0%, transparent 40%),
+                
+                /* Secondary highlight */
+                radial-gradient(ellipse at 70% 20%, rgba(255, 150, 150, 0.1) 0%, transparent 30%),
+                
+                /* Deep color variation */
+                radial-gradient(ellipse at 50% 50%, rgba(139, 0, 0, 0.8) 0%, rgba(100, 0, 0, 0.9) 50%, rgba(80, 0, 0, 1) 100%),
+                
+                /* Base blood red */
+                #8b0000;
+            
+            transition: all 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Pseudo-element for extra surface detail */
+        .blob::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 30%;
+            height: 30%;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(255, 200, 200, 0.15) 0%, transparent 70%);
+            filter: blur(2px);
+            transition: all 2000ms ease;
+        }
+
+        /* Second pseudo-element for additional depth */
+        .blob::after {
+            content: '';
+            position: absolute;
+            bottom: 15%;
+            right: 15%;
+            width: 40%;
+            height: 40%;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(60, 0, 0, 0.2) 0%, transparent 70%);
+            filter: blur(4px);
+            transition: all 2000ms ease;
+        }
+
+        /* Animation for subtle organic movement */
+        @keyframes wobble {
+            0%, 100% {
+                border-radius: 48% 52% 47% 53% / 51% 49% 51% 49%;
+            }
+            25% {
+                border-radius: 51% 49% 52% 48% / 48% 52% 48% 52%;
+            }
+            50% {
+                border-radius: 47% 53% 49% 51% / 52% 48% 52% 48%;
+            }
+            75% {
+                border-radius: 52% 48% 51% 49% / 49% 51% 49% 51%;
+            }
+        }
+
+        .blob {
+            animation: wobble 8s ease-in-out infinite;
+        }
+
+        /* Signature imprint - initially hidden */
+        .signature-imprint {
+            position: absolute;
+            top: 42%;
+            left: 42%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            font-size: 270px;
+            opacity: 0;
+            transition: all 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            
+            /* Deep imprint styling */
+            color: #400000;
+            text-shadow: 
+                /* Inner shadows for deep impression */
+                inset 0 2px 4px rgba(0, 0, 0, 0.8),
+                inset 0 4px 8px rgba(0, 0, 0, 0.6),
+                inset 0 6px 12px rgba(0, 0, 0, 0.4),
+                
+                /* Edge highlights to simulate raised edges around impression */
+                0 -1px 1px rgba(255, 100, 100, 0.2),
+                0 -2px 2px rgba(255, 150, 150, 0.1);
+            
+            filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.7))
+                    drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5))
+                    drop-shadow(0 10px 16px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Clicked state */
+        .blob-container.clicked .blob {
+            transform: scale(1.2);
+            border-radius: 44% 66% 41% 59% / 44% 56% 43% 57%;
+            /* border-radius: 42% 58% 41% 59% / 44% 56% 43% 57%; */
+            animation: none;
+            
+            /* Enhanced shadows for more bulging effect */
+            box-shadow: 
+                /* Even deeper primary shadows */
+                inset 0 3px 6px rgba(0, 0, 0, 0.5),
+                inset 0 -3px 6px rgba(100, 0, 0, 0.4),
+                inset 3px 0 6px rgba(0, 0, 0, 0.45),
+                inset -3px 0 6px rgba(0, 0, 0, 0.45),
+                
+                /* Stronger secondary layer */
+                inset 0 6px 12px rgba(0, 0, 0, 0.4),
+                inset 0 -6px 12px rgba(80, 0, 0, 0.35),
+                inset 6px 0 12px rgba(0, 0, 0, 0.35),
+                inset -6px 0 12px rgba(0, 0, 0, 0.35),
+                
+                /* Enhanced tertiary layer */
+                inset 0 12px 24px rgba(0, 0, 0, 0.35),
+                inset 0 -12px 24px rgba(60, 0, 0, 0.3),
+                inset 12px 0 24px rgba(0, 0, 0, 0.3),
+                inset -12px 0 24px rgba(0, 0, 0, 0.3),
+                
+                /* Deeper quaternary layer */
+                inset 0 18px 36px rgba(255, 80, 80, 0.08),
+                inset 0 -18px 36px rgba(40, 0, 0, 0.25),
+                
+                /* Extra deep center shadow for maximum bulge */
+                inset 0 0 60px rgba(0, 0, 0, 0.4),
+                inset 0 0 80px rgba(30, 0, 0, 0.3),
+                
+                /* Additional depth layers */
+                inset 0 30px 60px rgba(255, 120, 120, 0.03),
+                inset 0 -30px 60px rgba(20, 0, 0, 0.2),
+                
+                /* Imprint area shadow */
+                inset -10px -5px 30px rgba(0, 0, 0, 0.6),
+                
+                /* Enhanced outer shadow */
+                0 12px 48px rgba(0, 0, 0, 0.4),
+                0 6px 24px rgba(139, 0, 0, 0.3);
+        }
+
+        /* Show signature when clicked */
+        .blob-container.clicked .signature-imprint {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1) rotateX(15deg) rotateY(-10deg);
+        }
+
+        /* Enhanced blob details when clicked */
+        .blob-container.clicked .blob::before {
+            top: 5%;
+            left: 5%;
+            width: 25%;
+            height: 25%;
+            background: radial-gradient(ellipse at center, rgba(255, 180, 180, 0.12) 0%, transparent 70%);
+        }
+
+        .blob-container.clicked .blob::after {
+            bottom: 10%;
+            right: 10%;
+            width: 45%;
+            height: 45%;
+            background: radial-gradient(ellipse at center, rgba(40, 0, 0, 0.3) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body>
+    <div class="blob-container" onclick="this.classList.add('clicked')">
+        <div class="blob"></div>
+        <i class="fas fa-check-double signature-imprint"></i>
+    </div>
+</body>
+</html>

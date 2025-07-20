@@ -10,10 +10,33 @@ interface Props {
 
 const { text, href, onClick, variant = 'primary' } = Astro.props;
 
-const baseClasses = 'inline-block px-8 py-3 rounded-full font-body font-semibold transition-all duration-300 ease-in-out transform  mystical-border';
-const primaryClasses = 'bg-gold text-leather shadow-2xl hover:bg-silver hover:text-charcoal text-glow';
-const secondaryClasses = 'parchment-texture text-charcoal hover:leather-texture hover:text-parchment';
-const skeletalClasses = 'skeleton-button';
+// const baseClasses = 'inline-block px-8 py-3 rounded-full font-body font-semibold transition-all duration-300 ease-in-out transform  mystical-border';
+// const primaryClasses = 'bg-gold text-leather shadow-2xl hover:bg-silver hover:text-charcoal text-glow';
+// const secondaryClasses = 'parchment-texture text-charcoal hover:leather-texture hover:text-parchment';
+// const skeletalClasses = 'skeleton-button';
+
+const baseClasses = `inline-block px-8 py-3 rounded-full font-body font-semibold transition-all duration-300 ease-in-out transform mystical-border shadow-lg
+  before:content-[''] before:absolute before:inset-0 before:rounded-full before:pointer-events-none before:opacity-60 before:mix-blend-soft-light
+  relative overflow-hidden`;
+
+const primaryClasses = `bg-[linear-gradient(120deg,#f9e7b3_0%,#e6c97a_50%,#bfa14a_100%)]
+  text-leather
+  shadow-[0_4px_24px_0_rgba(80,60,10,0.18),0_1.5px_0_0_#fff_inset]
+  hover:bg-[linear-gradient(120deg,#f7f3e2_0%,#e6c97a_60%,#bfa14a_100%)]
+  hover:shadow-[0_8px_32px_0_rgba(80,60,10,0.28),0_1.5px_0_0_#fff_inset]
+  border-[2.5px] border-[#bfa14a] text-glow`;
+
+const secondaryClasses = `bg-[linear-gradient(120deg,#f6ecd6_0%,#e2d1b0_100%)]
+  text-charcoal
+  shadow-[0_2px_12px_0_rgba(80,60,10,0.10)]
+  hover:bg-[linear-gradient(120deg,#f3e7c7_0%,#e2d1b0_100%)]
+  hover:shadow-[0_4px_18px_0_rgba(80,60,10,0.18)]
+  border-[2px] border-[#e2d1b0]`;
+
+const skeletalClasses = `bg-[linear-gradient(90deg,#ece9e6_0%,rgb(70, 70, 70)_100%)]
+  text-charcoal
+  border border-[#2F3349]
+  shadow-none`;
 
 const classes = `${baseClasses} ${variant === 'primary' ? primaryClasses : variant === 'skeletal' ? skeletalClasses : secondaryClasses}`;
 ---

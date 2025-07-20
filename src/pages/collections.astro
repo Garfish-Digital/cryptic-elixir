@@ -1,0 +1,618 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navigation from "../components/Navigation.astro";
+import { generateCollections } from "../scripts/collections.js";
+
+const allCollections = generateCollections();
+---
+
+<BaseLayout
+  title="Collections - Cryptic Elixir"
+  description="Browse our mystical collection of occult books, rare artifacts, ancient manuscripts, and sacred scrolls."
+>
+  <main class="min-h-screen relative overflow-hidden">
+    <!-- Collections Grid Container -->
+    <div class="collections-container p-6 pt-20">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold text-center mb-2 text-glow">
+          Cryptic Elixir
+        </h1>
+        <p class="text-sm md:text-2xl text-gold mb-4 font-body text-center">
+        <!-- <p class="text-xl md:text-2xl text-gold mb-4 font-body text-center"> -->
+          Uncover ancient wisdom buried within our mystical archives
+        </p>
+
+        <!-- Filter trigger now integrated in bottom navigation -->
+
+        <!-- Filter Drawer (slides up from bottom) -->
+        <div id="filter-drawer" class="filter-drawer">
+          <div class="filter-drawer-content">
+            <div class="filter-header">
+              <h3>Filter Collection</h3>
+              <button id="filter-close" class="filter-close-btn">&times;</button>
+            </div>
+            <div class="filter-container">
+              <button class="filter-btn active" data-filter="all"> All </button>
+              <button class="filter-btn" data-filter="Books"> Books </button>
+              <button class="filter-btn" data-filter="Rare Items">
+                Artifacts
+              </button>
+              <button class="filter-btn" data-filter="Manuscripts">
+                Manuscripts
+              </button>
+              <button class="filter-btn" data-filter="Scrolls"> Scrolls </button>
+            </div>
+          </div>
+          <div class="filter-backdrop"></div>
+        </div>
+
+        <Navigation showCart={true} />
+
+        <!-- Cards Grid -->
+        <div id="collections-grid" class="collections-grid">
+          <!-- Cards will be populated by JavaScript -->
+        </div>
+
+        <!-- Load More Button -->
+        <div id="load-more-container" class="load-more-container">
+          <button id="load-more-btn" class="load-more-btn">Load More Mysteries</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Modal is now in Navigation component -->
+    
+    <!-- Card Detail Modal -->
+    <div id="card-modal" class="card-modal">
+      <div class="card-modal-backdrop"></div>
+      <div class="card-modal-content parchment-texture">
+        <button id="modal-close" class="modal-close-btn">&times;</button>
+        <div id="modal-body">
+          <!-- Card details will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script define:vars={{ collectionsData: allCollections }} is:inline>
+    // Collections data is now available from the server
+    
+    // Collections functionality
+    let allItems = [];
+    let displayedItems = [];
+    let currentFilter = 'all';
+    let cardsPerLoad = 20;
+    let loadedCount = 0;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initializeCollections();
+      initializeFilterDrawer();
+      initializeCardModal();
+      initializeInfiniteScroll();
+    });
+
+    // Shuffle array using Fisher-Yates algorithm
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    function initializeCollections() {
+      allItems = shuffleArray(collectionsData);
+      loadInitialCards();
+    }
+
+    function loadInitialCards() {
+      loadedCount = 0;
+      displayedItems = getFilteredItems().slice(0, cardsPerLoad);
+      loadedCount = displayedItems.length;
+      renderCards();
+      updateLoadMoreButton();
+    }
+
+    function getFilteredItems() {
+      if (currentFilter === 'all') {
+        return allItems;
+      }
+      return allItems.filter(item => item.category === currentFilter);
+    }
+
+    function renderCards() {
+      const grid = document.getElementById('collections-grid');
+      grid.innerHTML = '';
+      
+      displayedItems.forEach((item, index) => {
+        const card = createCardElement(item, index);
+        grid.appendChild(card);
+      });
+      
+      // Reinitialize cart buttons
+      initializeCartButtons();
+    }
+
+    function createCardElement(item, index) {
+      const card = document.createElement('div');
+      card.className = 'collection-card';
+      card.setAttribute('data-category', item.category);
+      card.setAttribute('data-index', index);
+      
+      card.innerHTML = `
+        <div class="card-content ancient-parchment-texture">
+          <h3 class="card-title text=[#1E1B2E]">${item.title}</h3>
+          <div class="card-footer">
+            <span class="card-price">${item.price}</span>
+          </div>
+        </div>
+      `;
+      
+      // Add tap to expand functionality
+      card.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('add-to-cart-btn')) {
+          openCardModal(item);
+        }
+      });
+      
+      return card;
+    }
+
+    function initializeFilterDrawer() {
+      const filterTrigger = document.getElementById('filter-trigger');
+      const filterDrawer = document.getElementById('filter-drawer');
+      const filterClose = document.getElementById('filter-close');
+      const filterBackdrop = document.querySelector('.filter-backdrop');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+
+      // Open drawer
+      filterTrigger.addEventListener('click', () => {
+        filterDrawer.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+
+      // Close drawer
+      function closeDrawer() {
+        filterDrawer.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      filterClose.addEventListener('click', closeDrawer);
+      filterBackdrop.addEventListener('click', closeDrawer);
+
+      // Filter buttons
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          
+          // Update active filter
+          filterBtns.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          // Apply filter
+          currentFilter = filter;
+          loadInitialCards();
+          
+          // Close drawer
+          closeDrawer();
+        });
+      });
+    }
+
+    function initializeCardModal() {
+      const modal = document.getElementById('card-modal');
+      const modalClose = document.getElementById('modal-close');
+      const modalBackdrop = document.querySelector('.card-modal-backdrop');
+
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      modalClose.addEventListener('click', closeModal);
+      modalBackdrop.addEventListener('click', closeModal);
+      
+      // Close on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+    }
+
+    function openCardModal(item) {
+      const modal = document.getElementById('card-modal');
+      const modalBody = document.getElementById('modal-body');
+      
+      modalBody.innerHTML = `
+        <div class="modal-card">
+          <div class="modal-card-category">${item.category.slice(0, -1)}</div>
+          <h2 class="modal-card-title">${item.title}</h2>
+          <p class="modal-card-description">${item.description}</p>
+          <div class="modal-card-details">
+            <div class="modal-card-price">${item.price}</div>
+            <button class="modal-add-to-cart-btn" data-item='${JSON.stringify(item).replace(/'/g, "&apos;")}'>
+              <i class="fa-sharp fa-briefcase"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      
+      // Initialize cart button for modal
+      const modalCartBtn = modalBody.querySelector('.modal-add-to-cart-btn');
+      modalCartBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const item = JSON.parse(modalCartBtn.dataset.item);
+        if (window.addToCart) {
+          window.addToCart(item);
+        }
+        
+        // Visual feedback
+        modalCartBtn.innerHTML = '<i class="fa-sharp fa-check"></i>';
+        modalCartBtn.style.background = "var(--gold)";
+        setTimeout(() => {
+          modalCartBtn.innerHTML = '<i class="fa-sharp fa-briefcase"></i>';
+          modalCartBtn.style.background = "";
+        }, 1000);
+      });
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function initializeCartButtons() {
+      const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+
+      addToCartBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const item = JSON.parse(btn.dataset.item);
+          
+          if (window.addToCart) {
+            window.addToCart(item);
+          }
+
+          // Visual feedback
+          btn.textContent = "Added!";
+          btn.style.background = "var(--gold)";
+          setTimeout(() => {
+            btn.textContent = "Add to Satchel";
+            btn.style.background = "";
+          }, 1000);
+        });
+      });
+    }
+
+    function initializeInfiniteScroll() {
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      
+      loadMoreBtn.addEventListener('click', loadMoreCards);
+      
+      // Also implement scroll-based loading
+      window.addEventListener('scroll', () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
+          loadMoreCards();
+        }
+      });
+    }
+
+    function loadMoreCards() {
+      const filteredItems = getFilteredItems();
+      const remainingItems = filteredItems.slice(loadedCount, loadedCount + cardsPerLoad);
+      
+      if (remainingItems.length > 0) {
+        displayedItems = [...displayedItems, ...remainingItems];
+        loadedCount += remainingItems.length;
+        renderCards();
+        updateLoadMoreButton();
+      }
+    }
+
+    function updateLoadMoreButton() {
+      const loadMoreContainer = document.getElementById('load-more-container');
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      const filteredItems = getFilteredItems();
+      
+      if (loadedCount >= filteredItems.length) {
+        loadMoreContainer.style.display = 'none';
+      } else {
+        loadMoreContainer.style.display = 'block';
+        const remaining = filteredItems.length - loadedCount;
+        loadMoreBtn.textContent = `Load More Mysteries (${remaining} remaining)`;
+      }
+    }
+  </script>
+
+  <style>
+    /* Mobile-First Collections Layout */
+    .collections-container {
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 8rem; /* Space for bottom navigation */
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      padding: 1rem;
+      max-width: 100%;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    .collection-card {
+      background: linear-gradient(
+        135deg,
+        var(--parchment-light) 0%,
+        var(--parchment) 100%
+      );
+      border: 2px solid var(--leather);
+      border-radius: 8px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 0 10px rgba(45, 24, 16, 0.1);
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .collection-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(45, 24, 16, 0.1);
+    }
+
+    .collection-card:active {
+      transform: translateY(-2px);
+    }
+
+    .card-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+      /* Parchment background like sanctum page */
+    
+    }
+
+    .card-content::before {
+      content: "";
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+      right: -1rem;
+      bottom: -1rem;
+      background: radial-gradient(
+          circle at 20% 80%,
+          rgba(45, 24, 16, 0.05) 0%,
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(45, 24, 16, 0.05) 0%,
+          transparent 50%
+        );
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    
+
+    /* Filter trigger styling now in Navigation component */
+
+    /* Filter Drawer */
+    .filter-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .filter-drawer.active {
+      transform: translateY(0);
+    }
+
+    .filter-drawer-content {
+      background: var(--background-dark);
+      border-top: 2px solid var(--gold);
+      border-radius: 16px 16px 0 0;
+      padding: 1.5rem;
+      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 61;
+    }
+
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-header h3 {
+      color: var(--text-mystical);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .filter-close-btn {
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .filter-close-btn:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+
+    .filter-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--leather-light);
+      color: var(--leather-light);
+      padding: 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      min-height: 48px;
+      backdrop-filter: blur(10px);
+    }
+
+    .filter-btn:hover {
+      color: var(--text-mystical);
+      border: 1px solid var(--text-mystical);
+    }
+
+    .filter-btn.active {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: rgba(212, 165, 116, 0.1);
+    }
+
+    .filter-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 59;
+    }
+
+
+    /* Load More Button */
+    .load-more-container {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+
+    .load-more-btn {
+      background: var(--leather);
+      color: var(--parchment);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .load-more-btn:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Mobile Single Column */
+    @media (max-width: 510px) {
+      .collections-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 1rem;
+      }
+    }
+
+    /* Tablet Breakpoint */
+    @media (min-width: 768px) {
+      .collections-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 2rem;
+      }
+
+      .collection-card {
+        padding: 1.5rem;
+        min-height: 220px;
+      }
+
+      .card-title {
+        font-size: 1rem;
+      }
+
+      .card-description {
+        font-size: 0.85rem;
+        -webkit-line-clamp: 4;
+      }
+
+      .filter-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .modal-card-content {
+        max-width: 500px;
+      }
+    }
+
+    /* Desktop Breakpoint */
+    @media (min-width: 1024px) {
+      .collections-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        padding: 3rem;
+        max-width: 1400px;
+      }
+
+      .collection-card {
+        min-height: 240px;
+        padding: 2rem;
+      }
+
+      .card-title {
+        font-size: 1.1rem;
+      }
+
+      .card-description {
+        font-size: 0.9rem;
+      }
+
+      .filter-container {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    /* Large Desktop */
+    @media (min-width: 1440px) {
+      .collections-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  </style>
+</BaseLayout>

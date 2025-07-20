@@ -2,57 +2,88 @@
 // src/pages/index.astro
 // This is your main homepage.
 // It uses the BaseLayout for consistent structure.
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 // import Header from '../components/common/Header.astro';
 // import Footer from '../components/common/Footer.astro';
-import Button from '../components/common/Button.astro';
-// import AnimatedHero from '../components/interactive/AnimatedHero.astro'; // Will create this soon
+import Button from "../components/common/Button.astro";
+import Navigation from "../components/Navigation.astro";
+import AnimatedHero from '../components/interactive/AnimatedHero.astro';
 ---
 
 <BaseLayout title="Cryptic Elixir - Occult Literature & Rare Books">
-
-  <main class="container mx-auto p-4 py-12">
+  <main class="container mx-auto p-4 py-12 pb-32">
     <section class="text-center mb-16">
-      <h1 class="text-5xl md:text-6xl font-serif font-bold text-mystical mb-6 text-glow">
+      <h1
+        class="text-5xl md:text-6xl font-serif font-bold text-mystical mb-6 text-glow"
+      >
         Cryptic Elixir
       </h1>
-      <p class="text-xl md:text-2xl text-gold mb-4 font-body">
+      <p class="text-sm md:text-2xl text-gold mb-4 font-body">
         Ancient Wisdom • Occult Literature • Rare Manuscripts
       </p>
-      <p class="text-lg text-mystical mb-8 font-body max-w-2xl mx-auto">
-        Journey into the depths of esoteric knowledge with our curated collection of mystical texts, forbidden grimoires, and alchemical treatises.
+      <p class="text-sm text-mystical mb-8 font-body max-w-2xl mx-auto">
+        Journey into the depths of esoteric knowledge with our curated
+        collection of mystical texts, forbidden grimoires, and alchemical
+        treatises.
       </p>
-      <Button text="Explore the Collection" href="#collection" />
+
+      <Navigation />
+
+      <Button text="Explore the Collection" href="/collections" />
     </section>
 
-    <section id="collection" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-      <div class="parchment-texture p-6 rounded-lg mystical-border">
-        <h2 class="text-2xl font-serif font-semibold mb-3 text-parchment">Ancient Grimoires</h2>
-        <p class="text-charcoal font-body">Discover authentic medieval spell books, ritual guides, and ceremonial magic texts from forgotten libraries.</p>
+    <section
+      id="collection"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+    >
+      <div class="parchment-texture p-6 rounded-md mystical-border">
+        <h2 class="text-2xl font-serif font-semibold mb-3 text-parchment">
+          Ancient Grimoires
+        </h2>
+        <p class="text-charcoal font-body">
+          Discover authentic medieval spell books, ritual guides, and ceremonial
+          magic texts from forgotten libraries.
+        </p>
       </div>
       <div class="parchment-texture p-6 rounded-lg mystical-border">
-        <h2 class="text-2xl font-serif font-semibold mb-3 text-parchment">Alchemical Manuscripts</h2>
-        <p class="text-charcoal font-body">Rare treatises on the Great Work, transmutation secrets, and the philosopher's stone from master alchemists.</p>
+        <h2 class="text-2xl font-serif font-semibold mb-3 text-parchment">
+          Alchemical Manuscripts
+        </h2>
+        <p class="text-charcoal font-body">
+          Rare treatises on the Great Work, transmutation secrets, and the
+          philosopher's stone from master alchemists.
+        </p>
       </div>
-      <div class="parchment-texture p-6 rounded-lg mystical-border">
-        <h2 class="text-2xl font-serif font-semibold mb-3 text-parchment">Tarot & Divination</h2>
-        <p class="text-charcoal font-body">Comprehensive guides to the mystic arts of fortune telling, scrying, and prophetic interpretation.</p>
+      <div class="parchment-texture p-6 rounded-sm mystical-border">
+        <h2 class="text-2xl font-serif font-semibold mb-3 text-parchment">
+          Forbidden Scrolls
+        </h2>
+        <p class="text-charcoal font-body">
+          A fiendish selection of singular writings on necromancy, demonology,
+          and the occult arts, shunned by the uninitiated.
+        </p>
       </div>
     </section>
 
     <!-- Example of an interactive component placeholder -->
     <section class="mb-16">
-      <h2 class="text-3xl font-serif font-bold text-center mb-8 text-mystical text-glow">The Arcanum Awaits</h2>
-      <!-- <AnimatedHero /> -->
+      <h2
+        class="text-3xl font-serif font-bold text-center mb-8 text-mystical text-glow"
+      >
+        The Arcanum Awaits
+      </h2>
+      <AnimatedHero />
     </section>
 
     <section class="text-center leather-texture p-8 rounded-lg mystical-border">
-      <h2 class="text-3xl font-serif font-bold mb-4 text-gold">Seek the Hidden Knowledge?</h2>
-      <p class="text-lg text-parchment mb-6 font-body max-w-2xl mx-auto">
-        Step through the veil between worlds and discover the mysteries that have been whispered in shadows for centuries.
+      <h2 class="text-3xl font-serif font-bold mb-4 text-gold">
+        Seek the Hidden Knowledge?
+      </h2>
+      <p class="text-lg mb-6 font-body max-w-2xl mx-auto" style="color: var(--silver);">
+        Step through the veil between worlds and discover the mysteries that
+        have been whispered in shadows for centuries.
       </p>
-      <Button text="Enter the Sanctum" href="/catalog" />
+      <Button text="Enter the Sanctum" href="/sanctum" />
     </section>
   </main>
-
 </BaseLayout>

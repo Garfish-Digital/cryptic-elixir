@@ -4,6 +4,9 @@ import tailwind from '@astrojs/tailwind'; // Correct import for Astro's Tailwind
 
 // https://astro.build/config
 export default defineConfig({
+  devToolbar: {
+    enabled: false
+  },
   integrations: [
     tailwind({
       // You can pass options to Tailwind here if needed, e.g., to configure the base stylesheet
