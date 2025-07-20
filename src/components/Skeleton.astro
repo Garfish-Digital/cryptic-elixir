@@ -4,23 +4,25 @@
 // This will be positioned as a separate layer for loading state
 import Button from "./common/Button.astro";
 import Navigation from "./Navigation.astro";
+
 import "../styles/skeleton.css";
 ---
 
 <div class="skeleton-layer">
   <!-- Main content skeleton - exact duplicate of index.astro main content -->
-  <main class="container mx-auto p-4 py-12">
-    <!-- Hero section skeleton -->
-    <section class="text-center mb-16">
+  <main class="container mx-auto p-4 py-12 pb-32">
+    <section class="skeleton-text-hero text-center mb-16">
       <h1
-        class="skeleton-text-hero text-5xl md:text-6xl font-serif font-bold mb-6"
+        class="skeleton-text text-5xl md:text-6xl font-serif font-bold text-mystical mb-6 text-glow"
       >
         Cryptic Elixir
       </h1>
-      <p class="skeleton-text text-xl md:text-2xl mb-4 font-body">
+      <p class="skeleton-text text-sm md:text-2xl text-gold mb-4 font-body">
         Ancient Wisdom • Occult Literature • Rare Manuscripts
       </p>
-      <p class="skeleton-text text-lg mb-8 font-body max-w-2xl mx-auto">
+      <p
+        class="skeleton-text text-sm text-mystical mb-8 font-body max-w-2xl mx-auto"
+      >
         Journey into the depths of esoteric knowledge with our curated
         collection of mystical texts, forbidden grimoires, and alchemical
         treatises.
@@ -28,63 +30,239 @@ import "../styles/skeleton.css";
 
       <Navigation />
 
-      <Button text="Explore the Collection" href="" variant="skeletal" />
+      <Button
+        text="Explore the Collection"
+        href="/collections"
+        variant="skeletal"
+      />
     </section>
 
-    <div style="height: 8px;"></div>
-
-    <!-- Collection grid skeleton -->
     <section
       id="collection"
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
     >
-      <div class="skeleton-card p-6 rounded-lg">
-        <h2 class="skeleton-text-bright text-2xl font-serif font-semibold mb-3">
+      <div class="skeleton-card p-6 rounded-sm mystical-border">
+        <h2 class="text-2xl font-serif font-semibold mb-3 text-parchment">
           Ancient Grimoires
         </h2>
-        <p class="skeleton-text font-body">
+        <p class="text-charcoal font-body">
           Discover authentic medieval spell books, ritual guides, and ceremonial
           magic texts from forgotten libraries.
         </p>
       </div>
-      <div class="skeleton-card p-6 rounded-lg">
-        <h2 class="skeleton-text-bright text-2xl font-serif font-semibold mb-3">
+      <div class="skeleton-card p-6 rounded-sm mystical-border">
+        <h2 class="text-2xl font-serif font-semibold mb-3 text-parchment">
           Alchemical Manuscripts
         </h2>
-        <p class="skeleton-text font-body">
+        <p class="text-charcoal font-body">
           Rare treatises on the Great Work, transmutation secrets, and the
           philosopher's stone from master alchemists.
         </p>
       </div>
-      <div class="skeleton-card p-6 rounded-lg">
-        <h2 class="skeleton-text-bright text-2xl font-serif font-semibold mb-3">
-          Tarot & Divination
+      <div class="skeleton-card p-6 rounded-sm mystical-border">
+        <h2 class="text-2xl font-serif font-semibold mb-3 text-parchment">
+          Forbidden Scrolls
         </h2>
-        <p class="skeleton-text font-body">
-          Comprehensive guides to the mystic arts of fortune telling, scrying,
-          and prophetic interpretation.
+        <p class="text-charcoal font-body">
+          A fiendish selection of singular writings on necromancy, demonology,
+          and the occult arts, shunned by the uninitiated.
         </p>
       </div>
     </section>
 
-    <!-- Interactive component skeleton -->
+    <!-- Example of an interactive component placeholder -->
     <section class="mb-16">
-      <h2 class="skeleton-text text-3xl font-serif font-bold text-center mb-8">
+      <h2
+        class="text-3xl font-serif font-bold text-center mb-8 text-mystical text-glow"
+      >
         The Arcanum Awaits
       </h2>
-      <!-- AnimatedHero will be omitted as per requirements -->
+
+      <div class="skeleton-animated-hero">
+        <img
+          src="/images/libraryhero.jpg"
+          alt="Ancient mystical library"
+          class="skeleton-hero-image"
+        />
+      </div>
     </section>
 
-    <!-- Call to action skeleton -->
-    <section class="text-center p-8 rounded-lg">
-      <h2 class="skeleton-text text-3xl font-serif font-bold mb-4">
+    <section class="text-center leather-texture p-8 rounded-lg mystical-border">
+      <h2 class="text-3xl font-serif font-bold mb-4 text-gold">
         Seek the Hidden Knowledge?
       </h2>
-      <p class="skeleton-text text-lg mb-6 font-body max-w-2xl mx-6">
+      <p
+        class="text-lg mb-6 font-body max-w-2xl mx-auto"
+        style="color: var(--silver);"
+      >
         Step through the veil between worlds and discover the mysteries that
         have been whispered in shadows for centuries.
       </p>
-      <div class="skeleton-button">Enter the Sanctum</div>
+      <Button text="Enter the Sanctum" href="/sanctum" />
     </section>
   </main>
 </div>
+
+<style>
+  /* Skeleton Loading Screen Styles */
+
+  .skeleton-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    opacity: 0;
+    animation: skeleton-fade-in 9000ms ease-out forwards;
+    /* animation: 
+    skeleton-fade-in 2000ms ease-out forwards,
+    skeleton-fade-out 3000ms ease-out 2000ms forwards; */
+  }
+
+  .skeleton-layer::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Skeleton animations */
+  @keyframes skeleton-fade-in {
+    0% {
+      opacity: 0;
+    }
+    33% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  /* @keyframes skeleton-fade-out {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+} */
+
+  /* Skeleton text styling - black with fuzzy shadows */
+  .skeleton-text-hero {
+    color: rgb(50, 50, 50);
+    text-shadow:
+      0 0 2px rgba(20, 20, 20, 0.8),
+      0 0 4px rgba(20, 20, 20, 0.6),
+      0 0 6px rgba(20, 20, 20, 0.4);
+    /* animation: 
+    skeleton-shadow-grow 3000ms ease-out 3000ms forwards; */
+  }
+  .skeleton-text {
+    color: rgb(0, 0, 0);
+    text-shadow:
+      0 0 2px rgba(0, 0, 0, 0.8),
+      0 0 4px rgba(0, 0, 0, 0.6),
+      0 0 6px rgba(0, 0, 0, 0.4);
+    /* animation: 
+    skeleton-shadow-grow 3000ms ease-out 3000ms forwards; */
+  }
+  .skeleton-text-bright {
+    color: rgb(70, 70, 70);
+    text-shadow:
+      0 0 2px rgba(30, 30, 30, 0.8),
+      0 0 4px rgba(30, 30, 30, 0.6),
+      0 0 6px rgba(30, 30, 30, 0.4);
+    /* animation: 
+    skeleton-shadow-grow 3000ms ease-out 3000ms forwards; */
+  }
+
+  /* Skeleton button styling - matches Button.astro */
+  .skeleton-button {
+    background: rgb(20, 20, 20);
+    color: rgb(70, 70, 70);
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    display: inline-block;
+    font-weight: 600;
+    box-shadow:
+      0 0 4px rgba(0, 0, 0, 0.8),
+      0 0 8px rgba(0, 0, 0, 0.6),
+      0 0 12px rgba(0, 0, 0, 0.4);
+    /* animation: 
+    skeleton-shadow-grow 3000ms ease-out 3000ms forwards; */
+  }
+
+  /* Skeleton card styling */
+  .skeleton-card {
+    box-shadow:
+      0 0 4px rgba(0, 0, 0, 0.8),
+      0 0 8px rgba(0, 0, 0, 0.6),
+      0 0 12px rgba(0, 0, 0, 0.4);
+    /* animation: 
+    skeleton-shadow-grow 3000ms ease-out 3000ms forwards; */
+  }
+
+  /* Shadow growth animation (3000ms-6000ms) */
+  /* @keyframes skeleton-shadow-grow {
+  0% {
+    text-shadow: 
+      0 0 2px rgba(0, 0, 0, 0.8),
+      0 0 4px rgba(0, 0, 0, 0.6),
+      0 0 6px rgba(0, 0, 0, 0.4);
+    box-shadow: 
+      0 0 4px rgba(0, 0, 0, 0.8),
+      0 0 8px rgba(0, 0, 0, 0.6),
+      0 0 12px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    text-shadow: 
+      0 0 6px rgba(0, 0, 0, 0.8),
+      0 0 12px rgba(0, 0, 0, 0.6),
+      0 0 18px rgba(0, 0, 0, 0.4);
+    box-shadow: 
+      0 0 12px rgba(0, 0, 0, 0.8),
+      0 0 24px rgba(0, 0, 0, 0.6),
+      0 0 36px rgba(0, 0, 0, 0.4);
+  }
+} */
+
+  .skeleton-animated-hero {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 1; /* 2:1 ratio window */
+    max-width: 1200px; /* Reasonable max width */
+    margin: 0 auto; /* Center the component */
+    overflow: hidden;
+    /* border-radius: 12px; */
+    /* box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4); */
+    /* transform: invert(-1) grayscale(100%); */
+  }
+
+  .skeleton-hero-image {
+    /* 
+    Position image to fill window width completely
+    Bottom edge of image aligns with bottom edge of window
+    Top portion gets cropped by window overflow:hidden
+    */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Fill the entire window width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    object-position: bottom; /* Align bottom edge, crop from top */
+    
+    /* Creepy inverted monochrome effect */
+    filter: 
+      grayscale(100%) 
+      invert(1) 
+      contrast(150%) 
+      brightness(0.8)
+      sepia(20%)
+      opacity(.25);
+
+    /* Ken Burns animation - subtle movement within our cropped area */
+    /* animation: kenBurnsCrop 120s linear infinite alternate; */
+  }
+</style>
