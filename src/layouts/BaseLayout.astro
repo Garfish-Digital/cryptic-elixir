@@ -4,6 +4,7 @@
 // It defines the basic HTML structure, meta tags, and global styles.
 
 import Skeleton from '../components/Skeleton.astro';
+import SanctumSkeleton from '../components/Sanctum-Skeleton.astro';
 import VaporEffect from '../components/VaporEffect.astro';
 
 
@@ -21,6 +22,7 @@ const { title = 'Cryptic Elixir', description = 'Occult Literature and Rare Book
 
 // Check if we're on the home page to conditionally show the skeleton
 const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '/index.html';
+const isSanctumPage = Astro.url.pathname === '/sanctum';
 ---
 
 <!DOCTYPE html>
@@ -39,8 +41,9 @@ const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '/index.
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lora:wght@400;500;600&family=Arapey:wght@400;500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- Skeleton loading screen - only on homepage -->
+    <!-- Skeleton loading screens -->
     {isHomePage && <Skeleton />}
+    <!-- {isSanctumPage && <SanctumSkeleton />} -->
     
     <!-- Vapor Effect -->
     {isHomePage && <VaporEffect />}

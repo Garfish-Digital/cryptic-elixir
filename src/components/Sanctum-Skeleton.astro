@@ -1,0 +1,436 @@
+---
+import Navigation from "../components/Navigation.astro";
+---
+
+<div class="skeleton-sanctum-layer">
+  <main class="skeleton-sanctum-main">
+    <!-- Branding Header -->
+    <div class="branding-header">
+      <h1 class="text-4xl md:text-6xl font-bold text-center mb-2 text-glow">
+        Cryptic Elixir
+      </h1>
+      <p class="text-sm md:text-2xl text-gold mb-4 font-body text-center">
+        Become a Guardian of Ancient Wisdom
+      </p>
+    </div>
+
+    <Navigation />
+
+    <!-- Ancient Scroll Container -->
+    <div class="scroll-wrapper">
+      <div id="ancient-scroll" class="ancient-scroll rounded-sm">
+        <!-- Parchment -->
+        <div class="parchment-container">
+          <div class="parchment-content">
+            <div class="scroll-header">
+              <h1 class="sanctum-title">Join our Sanctum</h1>
+              <div class="mystical-divider"></div>
+              <!-- <p class="sanctum-subtitle">Contact the Guardians of Ancient Wisdom</p> -->
+            </div>
+
+            <!-- Contact Form -->
+            <form id="sanctum-form" class="sanctum-form">
+              <div class="form-group">
+                <div class="input-container">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-field"
+                    data-placeholder="Your name..."
+                    required
+                  />
+                  <div class="typewriter-placeholder">Your name...</div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <div class="input-container">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-field"
+                      data-placeholder="Email address..."
+                    />
+                    <div class="typewriter-placeholder">Email address...</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-container">
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      class="form-field"
+                      data-placeholder="Phone number..."
+                    />
+                    <div class="typewriter-placeholder">Phone number...</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-container textarea-container">
+                  <textarea
+                    id="additional"
+                    name="additional"
+                    rows="3"
+                    class="form-field"
+                    data-placeholder="Additional thoughts..."></textarea>
+                  <div class="typewriter-placeholder">
+                    Additional thoughts...
+                  </div>
+                </div>
+              </div>
+
+              <!-- Wax Seal Submit -->
+              <div class="wax-seal-container">
+                <div class="wax-blob-container" id="wax-seal">
+                  <div class="wax-blob"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="success-modal" class="success-modal">
+      <div class="success-content ancient-parchment-texture">
+        <i class="fa-sharp fa-wreath-laurel wreath-i" style="color: #3A3A3A"
+        ></i>
+        <h2>Welcome</h2>
+        <p>Your message has been received by the Sanctum.</p>
+        <button id="close-success" class="close-success-btn">
+          <i
+            class="fa-sharp fa-handshake-angle handshake-i"
+            style="color: #3A3A3A"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script></script>
+
+<style>
+  .skeleton-sanctum-layer {
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 51;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    opacity: 1;
+    animation: skeleton-sanctum-fade-in 2000ms ease-out forwards;
+    /* animation: 
+    skeleton-fade-in 2000ms ease-out forwards,
+    skeleton-fade-out 3000ms ease-out 2000ms forwards; */
+  }
+
+  .skeleton-sanctum-layer::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Skeleton animations */
+  /* @keyframes skeleton-sanctum-fade-in {
+    0% {
+      opacity: 0;
+    }
+    33% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+    }
+  } */
+
+  .skeleton-sanctum-main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    padding-bottom: 8rem; /* Space for bottom navigation */
+    position: relative;
+    background: #1a1a1a; /* Solid dark background for visibility */
+    animation: skeleton-sanctum-fade-in 5000ms ease-out forwards;
+  }
+
+  /* Branding Header */
+  .branding-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    z-index: 10;
+  }
+
+  .branding-header h1 {
+    font-family: "Crimson Text", serif;
+    color: #666; /* Visible gray color */
+    text-shadow:
+      0 0 2px rgba(0, 0, 0, 0.8),
+      0 0 4px rgba(0, 0, 0, 0.6),
+      0 0 6px rgba(0, 0, 0, 0.4);
+    margin-bottom: 0.5rem;
+  }
+
+  .branding-header p {
+    font-family: "Arapey", serif;
+    color: #888; /* Visible light gray */
+    margin-bottom: 1rem;
+  }
+
+  /* Ancient Scroll */
+  .scroll-wrapper {
+    position: relative;
+    max-width: 650px;
+    width: 100%;
+  }
+
+  .ancient-scroll {
+    position: relative;
+    opacity: 1; /* Make visible */
+    background: #333; /* Visible dark gray background */
+    border-radius: 12px;
+    box-shadow:
+      0 25px 80px rgba(0, 0, 0, 0.4),
+      inset 0 2px 10px rgba(212, 165, 116, 0.1);
+    overflow: hidden;
+    transform-origin: top center;
+    transform-style: preserve-3d;
+  }
+
+  .parchment-container {
+    position: relative;
+    min-height: 500px;
+    /* Layered backgrounds: base color, subtle stains, noise, and edge shading */
+    background:
+    /* Edge vignette for depth */
+      radial-gradient(
+        ellipse at 50% 100%,
+        rgba(120, 90, 40, 0.03) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse at 50% 0%,
+        rgba(120, 90, 40, 0.1) 0%,
+        transparent 70%
+      ),
+      /* Subtle stains */
+        radial-gradient(
+          circle at 30% 40%,
+          rgba(180, 150, 90, 0.04) 0%,
+          transparent 60%
+        ),
+      radial-gradient(
+        circle at 70% 60%,
+        rgba(180, 150, 90, 0.06) 0%,
+        transparent 60%
+      ),
+      /* Main parchment gradient */
+        linear-gradient(120deg, #bdb4a1 0%, #a39571 100%),
+      /* SVG noise texture */
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n" x="0" y="0"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="2"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.08"/></svg>');
+    background-blend-mode: multiply, multiply, multiply, multiply, normal,
+      normal;
+    /* border-radius: 10px; */
+    box-shadow:
+      0 8px 40px 0 rgba(120, 90, 40, 0.18),
+      /* 0 1.5px 0 0 #fff inset, */ 0 0 0 2px rgba(180, 150, 90, 0.08) inset;
+    /* border: 1.5px solid #e7d3a1; */
+    overflow: hidden;
+  }
+
+  .parchment-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at 20% 30%,
+        rgba(45, 24, 16, 0.04) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse at 80% 70%,
+        rgba(45, 24, 16, 0.06) 0%,
+        transparent 60%
+      ),
+      linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(212, 165, 116, 0.03) 50%,
+        transparent 70%
+      );
+    pointer-events: none;
+  }
+
+  .parchment-content {
+    padding: 3rem 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .scroll-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .sanctum-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: #777; /* Visible medium gray */
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-family: "Crimson Text", serif;
+  }
+
+  .sanctum-subtitle {
+    color: var(--charcoal-light);
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  /* Form Styles */
+  .sanctum-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    position: relative;
+  }
+
+  .input-container {
+    position: relative;
+  }
+
+  .form-field {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: #555; /* Visible dark gray background */
+    border: 1px solid #666; /* Visible border */
+    border-radius: 8px;
+    color: #ddd; /* Light text for contrast */
+    font-size: 1rem;
+    font-family: "Arapey", serif;
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+    box-sizing: border-box;
+  }
+  /* Adjust textarea height */
+  textarea.form-field {
+    min-height: 120px;
+    resize: vertical; /* Allow vertical resizing */
+  }
+
+  .textarea-container {
+    min-height: 120px;
+  }
+
+  /* Wax Seal Submit */
+  .wax-seal-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    position: relative;
+  }
+
+  .wax-blob-container {
+    position: relative;
+    cursor: pointer;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .wax-blob {
+    width: 80px;
+    height: 80px;
+    /* width: 75px;
+      height: 75px; */
+    position: relative;
+
+    /* Create the wobbly blob shape using border-radius */
+    border-radius: 48% 52% 47% 53% / 51% 49% 51% 49%;
+
+    /* Blood red base color */
+    background: #8b0000;
+
+    /* Layered inset shadows for depth and thickness */
+    box-shadow: 
+        /* Primary depth - immediate edge definition */
+      inset 0 2px 4px rgba(0, 0, 0, 0.4),
+      inset 0 -2px 4px rgba(120, 0, 0, 0.3),
+      inset 2px 0 4px rgba(0, 0, 0, 0.35),
+      inset -2px 0 4px rgba(0, 0, 0, 0.35),
+      /* Secondary layer - creates roundness */ inset 0 4px 8px
+        rgba(0, 0, 0, 0.3),
+      inset 0 -4px 8px rgba(100, 0, 0, 0.25),
+      inset 4px 0 8px rgba(0, 0, 0, 0.25),
+      inset -4px 0 8px rgba(0, 0, 0, 0.25),
+      /* Tertiary layer - deeper shadows for thickness */ inset 0 8px 16px
+        rgba(0, 0, 0, 0.25),
+      inset 0 -8px 16px rgba(80, 0, 0, 0.2),
+      inset 8px 0 16px rgba(0, 0, 0, 0.2),
+      inset -8px 0 16px rgba(0, 0, 0, 0.2),
+      /* Quaternary layer - subtle highlights */ inset 0 12px 24px
+        rgba(255, 100, 100, 0.1),
+      inset 0 -12px 24px rgba(60, 0, 0, 0.15),
+      /* Deep center shadow for maximum depth */ inset 0 0 40px
+        rgba(0, 0, 0, 0.3),
+      inset 0 0 60px rgba(40, 0, 0, 0.2),
+      /* Edge highlights for glossy effect */ inset 0 20px 40px
+        rgba(255, 150, 150, 0.05),
+      inset 0 -20px 40px rgba(40, 0, 0, 0.1),
+      /* Outer shadow for lifting off surface */ 0 8px 32px rgba(0, 0, 0, 0.3),
+      0 4px 16px rgba(139, 0, 0, 0.2);
+
+    /* Additional gradients for complex coloring */
+    background: 
+        /* Surface highlight */
+      radial-gradient(
+        ellipse at 30% 30%,
+        rgba(255, 100, 100, 0.2) 0%,
+        transparent 40%
+      ),
+      /* Secondary highlight */
+        radial-gradient(
+          ellipse at 70% 20%,
+          rgba(255, 150, 150, 0.1) 0%,
+          transparent 30%
+        ),
+      /* Deep color variation */
+        radial-gradient(
+          ellipse at 50% 50%,
+          rgba(139, 0, 0, 0.8) 0%,
+          rgba(100, 0, 0, 0.9) 50%,
+          rgba(80, 0, 0, 1) 100%
+        ),
+      /* Base blood red */ #8b0000;
+
+    /* Enhanced shadows for more bulging effect */
+
+    transition: all 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>

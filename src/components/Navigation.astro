@@ -32,7 +32,7 @@ const isCollectionsPage = currentPath === "/collections";
     <i class="fa-sharp fa-candle-holder"></i>
   </a>
 
-    <button id="filter-trigger" class={`nav-icon-link filter-nav-btn ${isCollectionsPage ? 'filter-active' : 'filter-inactive'}`}>
+    <button id="filter-trigger" data-nav-path="/sanctum" class={`nav-icon-link filter-nav-btn ${isCollectionsPage ? 'filter-active' : 'filter-inactive'}`}>
       <i class="fa fa-flask-round-potion"></i>
     </button>
   
@@ -200,7 +200,7 @@ const isCollectionsPage = currentPath === "/collections";
 
     if (cart.length === 0) {
       cartItems.innerHTML =
-        '<p class="empty-cart">Your satchel awaits mystical treasures...</p>';
+        '<p class="empty-cart" style="color: #5a4b41">Your satchel awaits secret treasures...</p>';
       return;
     }
 

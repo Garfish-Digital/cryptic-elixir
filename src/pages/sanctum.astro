@@ -572,7 +572,7 @@ import Navigation from "../components/Navigation.astro";
           // Professional 7-phase animation sequence
           const phases = [
             { name: "materialization", duration: 800 },
-            { name: "rodActivation", duration: 600 },
+            // { name: "rodActivation", duration: 600 },
             { name: "initialUnfurl", duration: 1200 },
             { name: "parchmentReveal", duration: 2400 },
             { name: "lightingShift", duration: 1000 },
@@ -608,22 +608,22 @@ import Navigation from "../components/Navigation.astro";
             },
             {
               transform:
-                "perspective(1000px) rotateX(-12deg) scaleY(0.08) translateZ(-60px)",
-              opacity: 0.3,
+                "perspective(1000px) rotateX(-12deg) scaleY(0.15) translateZ(-60px)",
+              opacity: 0,
               filter: "blur(2px) brightness(0.6) contrast(0.9)",
               offset: 0.4,
             },
             {
               transform:
-                "perspective(1000px) rotateX(-5deg) scaleY(0.15) translateZ(-20px)",
-              opacity: 0.7,
+                "perspective(1000px) rotateX(-5deg) scaleY(0.25) translateZ(-20px)",
+              opacity: 0,
               filter: "blur(1px) brightness(0.8) contrast(1)",
               offset: 1,
             },
           ];
 
           const animation = this.scroll.animate(keyframes, {
-            duration: 800,
+            duration: 1200,
             easing: this.easings.paperUnfurl,
             fill: "forwards",
           });
@@ -638,19 +638,19 @@ import Navigation from "../components/Navigation.astro";
             const keyframes = [
               {
                 transform: "scaleX(0.3) rotateZ(2deg)",
-                opacity: 0.3,
+                // opacity: 0.3,
                 filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
                 offset: 0,
               },
               {
                 transform: "scaleX(0.8) rotateZ(0.5deg)",
-                opacity: 0.8,
+                // opacity: 0.8,
                 filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))",
                 offset: 0.6,
               },
               {
                 transform: "scaleX(1) rotateZ(0deg)",
-                opacity: 1,
+                // opacity: 1,
                 filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.3))",
                 offset: 1,
               },
@@ -669,18 +669,24 @@ import Navigation from "../components/Navigation.astro";
           const keyframes = [
             {
               transform:
-                "perspective(1000px) rotateX(-5deg) scaleY(0.15) translateZ(-20px)",
+                "perspective(1000px) rotateX(-5deg) scaleY(0.25) translateZ(-20px)",
               offset: 0,
+                            opacity: 0,
+
             },
             {
               transform:
                 "perspective(1000px) rotateX(-2deg) scaleY(0.4) translateZ(-5px)",
-              offset: 0.5,
+              offset: 0.2,
+                            opacity: 0,
+
             },
             {
               transform:
                 "perspective(1000px) rotateX(0deg) scaleY(0.7) translateZ(0px)",
               offset: 1,
+                            opacity: .7,
+
             },
           ];
 
@@ -807,7 +813,7 @@ import Navigation from "../components/Navigation.astro";
             {
               transform:
                 "perspective(1000px) rotateX(0deg) scaleY(1) translateZ(0px) translateY(0px)",
-              offset: 0,
+              offset: .2,
             },
             {
               transform:
@@ -1088,16 +1094,18 @@ import Navigation from "../components/Navigation.astro";
       position: relative;
       max-width: 650px;
       width: 100%;
+            background: transparent;
+
     }
 
     .ancient-scroll {
       position: relative;
       opacity: 0;
-      /* background: linear-gradient(135deg, var(--leather) 0%, var(--leather-light) 100%); */
+      background: transparent;
       /* border-radius: 12px; */
-      box-shadow:
+      /* box-shadow:
         0 25px 80px rgba(0, 0, 0, 0.4),
-        inset 0 2px 10px rgba(212, 165, 116, 0.1);
+        inset 0 2px 10px rgba(212, 165, 116, 0.1); */
       overflow: hidden;
       /* Professional initial state - will be set by JavaScript */
       transform-origin: top center;
@@ -1107,7 +1115,7 @@ import Navigation from "../components/Navigation.astro";
     .parchment-container {
       position: relative;
       min-height: 500px;
-      /* Layered backgrounds: base color, subtle stains, noise, and edge shading */
+      /* Initial clean parchment - no texture */
       background:
     /* Edge vignette for depth */
         radial-gradient(
@@ -1132,17 +1140,46 @@ import Navigation from "../components/Navigation.astro";
           transparent 60%
         ),
         /* Main parchment gradient */
-          linear-gradient(120deg, #bdb4a1 0%, #a39571 100%),
-        /* SVG noise texture */
-          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n" x="0" y="0"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="2"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.08"/></svg>');
-      background-blend-mode: multiply, multiply, multiply, multiply, normal,
-        normal;
+          linear-gradient(120deg, #bdb4a1 0%, #a39571 100%);
+      background-blend-mode: multiply, multiply, multiply, multiply, normal;
       /* border-radius: 10px; */
       box-shadow:
         0 8px 40px 0 rgba(120, 90, 40, 0.18),
         /* 0 1.5px 0 0 #fff inset, */ 0 0 0 2px rgba(180, 150, 90, 0.08) inset;
       /* border: 1.5px solid #e7d3a1; */
       overflow: hidden;
+      
+      /* Texture will be added via pseudo-element */
+      position: relative;
+            animation: parchment-texture-fade-in 5000ms ease-out 3000ms forwards;
+
+    }
+
+    /* SVG noise texture that fades in after 2000ms */
+    .parchment-container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n" x="0" y="0"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="2"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.08"/></svg>');
+      mix-blend-mode: multiply;
+      opacity: 0;
+      /* animation: parchment-texture-fade-in 800ms ease-out 3000ms forwards; */
+      pointer-events: none;
+    }
+
+    @keyframes parchment-texture-fade-in {
+      0% {
+        opacity: .5;
+      }
+      50% {
+        opacity: .7;
+      }
+      100% {
+        opacity: 1;
+      }
     }
 
     .parchment-container::before {
@@ -1295,8 +1332,8 @@ import Navigation from "../components/Navigation.astro";
     }
 
     .wax-blob {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       /* width: 75px;
       height: 75px; */
       position: relative;
@@ -1430,8 +1467,8 @@ import Navigation from "../components/Navigation.astro";
       top: 42%;
       left: 42%;
       transform: translate(-50%, -50%) rotate(0deg);
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       /* width: 67.5px;
       height: 67.5px; */
       opacity: 0;
