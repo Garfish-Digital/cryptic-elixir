@@ -73,7 +73,7 @@ import Navigation from "./Navigation.astro";
     <!-- Example of an interactive component placeholder -->
     <section class="mb-16">
       <h2
-        class="text-3xl font-serif font-bold text-center mb-8 text-mystical text-glow"
+        class="skeleton-text-bright text-3xl font-serif font-bold text-center mb-8 text-mystical text-glow"
       >
         The Arcanum Awaits
       </h2>
@@ -203,30 +203,6 @@ import Navigation from "./Navigation.astro";
     skeleton-shadow-grow 3000ms ease-out 3000ms forwards; */
   }
 
-  /* Shadow growth animation (3000ms-6000ms) */
-  /* @keyframes skeleton-shadow-grow {
-  0% {
-    text-shadow: 
-      0 0 2px rgba(0, 0, 0, 0.8),
-      0 0 4px rgba(0, 0, 0, 0.6),
-      0 0 6px rgba(0, 0, 0, 0.4);
-    box-shadow: 
-      0 0 4px rgba(0, 0, 0, 0.8),
-      0 0 8px rgba(0, 0, 0, 0.6),
-      0 0 12px rgba(0, 0, 0, 0.4);
-  }
-  100% {
-    text-shadow: 
-      0 0 6px rgba(0, 0, 0, 0.8),
-      0 0 12px rgba(0, 0, 0, 0.6),
-      0 0 18px rgba(0, 0, 0, 0.4);
-    box-shadow: 
-      0 0 12px rgba(0, 0, 0, 0.8),
-      0 0 24px rgba(0, 0, 0, 0.6),
-      0 0 36px rgba(0, 0, 0, 0.4);
-  }
-} */
-
   .skeleton-animated-hero {
     position: relative;
     width: 100%;
@@ -255,10 +231,10 @@ import Navigation from "./Navigation.astro";
     
     /* Creepy inverted monochrome effect */
     filter: 
-      grayscale(100%) 
+      grayscale(75%) 
       invert(1) 
-      contrast(150%) 
-      brightness(0.8)
+      contrast(100%) 
+      brightness(0.4)
       sepia(20%)
       opacity(.2);
 
